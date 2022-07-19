@@ -7,7 +7,7 @@ Description: A series of classes for interpolating and smoothing data using b-sp
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.1
 Imports: 
     R6
 URL: https://alexmerot.github.io/smouseGPS/

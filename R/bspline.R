@@ -1,7 +1,7 @@
 #' Create a B-Spline.
 #'
 #' @param K Order of polynomial.
-#' @param m Spline coefficients (\eqn{m = M \times D}).
+#' @param m Spline coefficients \eqn{m = M \times D}.
 #'
 #' @description Ici la description
 #'
@@ -9,6 +9,8 @@
 #' @export
 #'
 #' @examples
+#'
+#' @importFrom R6 R6Class
 
 bspline <- R6Class("bspline", list(
 

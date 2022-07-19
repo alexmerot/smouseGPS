@@ -3,10 +3,13 @@
 #'
 #' @return
 #'
-#'
+#' @importFrom R6 R6Class
 #' @examples
 #'
+#'
 #' @export
+#'
+#' @importFrom R6 R6Class
 
 gps_smoothing_spline <- R6Class("gps_smoothing_spline", list(
     # inherit = bivariate_smoothing_spline

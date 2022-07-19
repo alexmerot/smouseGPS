@@ -3,7 +3,11 @@
 #' @return
 #' @export
 #'
+#' @importFrom R6 R6Class
+#'
 #' @examples
+#'
+#' @importFrom R6 R6Class
 
 
 smoothing_spline <- R6Class("smoothing_spline", list(
