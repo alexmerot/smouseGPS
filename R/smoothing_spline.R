@@ -1,13 +1,10 @@
-#' smoothing_spline: Fit noisy data with a tensioned interpolating spline.
+#' Fit noisy data with a tensioned interpolating spline.
 #'
 #' @return
+#' @importFrom R6 R6Class
 #' @export
 #'
-#' @importFrom R6 R6Class
-#'
 #' @examples
-#'
-#' @importFrom R6 R6Class
 
 
 smoothing_spline <- R6Class("smoothing_spline", list(

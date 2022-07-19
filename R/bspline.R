@@ -6,11 +6,10 @@
 #' @description Ici la description
 #'
 #' @return
+#' @importFrom R6 R6Class
 #' @export
 #'
 #' @examples
-#'
-#' @importFrom R6 R6Class
 
 bspline <- R6Class("bspline", list(
 

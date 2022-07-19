@@ -2,14 +2,11 @@
 % Please edit documentation in R/gps_smoothing_spline.R
 \name{gps_smoothing_spline}
 \alias{gps_smoothing_spline}
-\title{gps_smoothing_spline: a class useful for smoothing noisy gps data and removing
-outliers.}
+\title{A class useful for smoothing noisy gps data and removing outliers.}
 \description{
-gps_smoothing_spline: a class useful for smoothing noisy gps data and removing
-outliers.
+A class useful for smoothing noisy gps data and removing outliers.
 
-gps_smoothing_spline: a class useful for smoothing noisy gps data and removing
-outliers.
+A class useful for smoothing noisy gps data and removing outliers.
 }
 \section{Methods}{
 \subsection{Public methods}{

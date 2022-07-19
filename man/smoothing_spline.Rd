@@ -2,11 +2,11 @@
 % Please edit documentation in R/smoothing_spline.R
 \name{smoothing_spline}
 \alias{smoothing_spline}
-\title{smoothing_spline: Fit noisy data with a tensioned interpolating spline.}
+\title{Fit noisy data with a tensioned interpolating spline.}
 \description{
-smoothing_spline: Fit noisy data with a tensioned interpolating spline.
+Fit noisy data with a tensioned interpolating spline.
 
-smoothing_spline: Fit noisy data with a tensioned interpolating spline.
+Fit noisy data with a tensioned interpolating spline.
 }
 \section{Methods}{
 \subsection{Public methods}{
