@@ -13,11 +13,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-# smouseGPS
-
 <!-- badges: start -->
 
-<img src="figures/logo.png" align="right" height="139"/>
+# smouseGPS <img src="man/figures/logo.png" align="right" height="139"/>
 
 <!-- badges: end -->
 
