@@ -1,0 +1,6 @@
+url: https://alexmerot.github.io/smouseGPS/
+template:
+  bootstrap: 5
+  bootswatch: "superhero"
+  theme: "gruvbox-dark"
+
