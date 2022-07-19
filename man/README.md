@@ -5,7 +5,8 @@
 
 <!-- badges: start -->
 
-<img src="figures/logo.png" align="right" height="139" />
+<img src="figures/logo.png" align="right" height="139"/>
+
 <!-- badges: end -->
 
 The goal of smouseGPS is to …
@@ -15,7 +16,8 @@ The goal of smouseGPS is to …
 You can install the development version of smouseGPS like so:
 
 ``` r
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+# install.packages("remotes")
+remotes::install_github("alexmerot/smouseGPS")
 ```
 
 ## Example
