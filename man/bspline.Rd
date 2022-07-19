@@ -4,7 +4,7 @@
 \alias{bspline}
 \title{Create a B-Spline.}
 \description{
-Create a B-Spline with 3 arguments initialisation (\code{f = BSpline(K, t_knot, m)})
+Create a B-Spline with 3 arguments initialisation (\code{f = BSpline(K, t_knot, m)}).
 }
 \section{Methods}{
 \subsection{Public methods}{
