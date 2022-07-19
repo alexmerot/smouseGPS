@@ -1,9 +1,9 @@
-#' Create a B-Spline.
+#' @title Create a B-Spline.
+#'
+#' @description Create a B-Spline with 3 arguments initialisation (\code{f = BSpline(K, t_knot, m)})
 #'
 #' @param K Order of polynomial.
 #' @param m Spline coefficients \eqn{m = M \times D}.
-#'
-#' @description Ici la description
 #'
 #' @return
 #' @importFrom R6 R6Class
