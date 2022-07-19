@@ -13,6 +13,18 @@
     <loc>https://alexmerot.github.io/smouseGPS/index.html</loc>
   </url>
   <url>
+    <loc>https://alexmerot.github.io/smouseGPS/reference/bspline.html</loc>
+  </url>
+  <url>
+    <loc>https://alexmerot.github.io/smouseGPS/reference/gps_smoothing_spline.html</loc>
+  </url>
+  <url>
     <loc>https://alexmerot.github.io/smouseGPS/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://alexmerot.github.io/smouseGPS/reference/smoothing_spline.html</loc>
+  </url>
+  <url>
+    <loc>https://alexmerot.github.io/smouseGPS/reference/smouseGPS-package.html</loc>
   </url>
 </urlset>
