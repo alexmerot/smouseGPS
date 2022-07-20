@@ -55,11 +55,11 @@ bspline <- R6Class(
 
   active = list(
     #' @field get_S Get \eqn{S = K - 1}
-    get_S = function() self$S = self$K - 1,
+    get_S = function() private$S = self$K - 1,
 
     #' @field get_domain Get the domain of \code{t_knot}
     get_domain = function() {
-      self$domain = c(start = self$t_knot[1], end = self$t_knot[length(self$t_knot)])
+      private$domain = c(start = self$t_knot[1], end = self$t_knot[length(self$t_knot)])
     }
   )
 )
