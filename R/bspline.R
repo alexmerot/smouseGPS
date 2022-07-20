@@ -11,9 +11,33 @@
 #'
 #' @examples
 
-bspline <- R6Class("bspline", list(
+bspline <- R6Class(
+  classname = "bspline",
+  public = list(
+    x_mean = 0,
+    x_std = 1,
+    B = list(),
+    K = NULL,
+    m = NULL,
+    t_knot = NULL,
+    t_pp = NULL,
+    C = NULL,
+    initialize = function(
+      K = NA,
+      m = NA,
+      t_knot = NA
+    ) {
+      stopifnot()
 
-))
+      self$K = K
+      self$m = M
+      self$t_knot = t_knot
+    }
+  ),
+  private = list(
+
+  )
+)
 
 # classdef BSpline < handle
 # %BSPLINE Summary of this class goes here
