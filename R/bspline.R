@@ -38,9 +38,9 @@ bspline <- R6Class(
     #' @param K Order of polynomial.
     #' @param m Spline coefficients (\eqn{m = M \cdot D}).
     initialize = function(t_knot, K, m) {
-      stopifnot("t_knot must be numeric." = is.numeric(t_knot))
-      stopifnot("K must be numeric." = is.numeric(K))
-      stopifnot("m must be numeric." = is.numeric(m))
+      stopifnot("t_knot must be numeric." = is.numeric(t_knot) & !is.na(t_knot))
+      stopifnot("K must be numeric." = is.numeric(K) & !is.na(K))
+      stopifnot("m must be numeric." = is.numeric(m) & !is.na(m))
 
       self$K = K
       self$m = m
