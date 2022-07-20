@@ -2,14 +2,57 @@
 % Please edit documentation in R/bspline.R
 \name{bspline}
 \alias{bspline}
-\title{Create a B-Spline.}
+\title{Primitive class that creates b-splines.}
 \description{
-Create a B-Spline with 3 arguments initialisation (\code{f = BSpline(K, t_knot, m)}).
+Creates b-splines given some set of knot points, and then
+evaluates the splines given some set of coefficients for the splines. It has
+3 arguments initialisation : \code{f = BSpline(K, t_knot, m)}.
+}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{t_knot}}{Spline knot points.}
+
+\item{\code{K}}{Order of polynomial.}
+
+\item{\code{m}}{Spline coefficients (\eqn{m = M \cdot D}).}
+
+\item{\code{x_mean}}{If set, these will be used to scale the output (default to 0).}
+
+\item{\code{x_std}}{\eqn{x_{out} = x_{std} \cdot (X \cdot m) + x_{mean}}}
+
+\item{\code{t_pp}}{pp break points (\code{size(t_pp) = length(t_knot) - 2*K + 1}).}
+
+\item{\code{C}}{Piecewise polynomial coefficients (\code{size(C) = [length(t_pp)-1, K]}).}
+}
+\if{html}{\out{</div>}}
 }
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
+\item \href{#method-bspline-new}{\code{bspline$new()}}
 \item \href{#method-bspline-clone}{\code{bspline$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-bspline-new"></a>}}
+\if{latex}{\out{\hypertarget{method-bspline-new}{}}}
+\subsection{Method \code{new()}}{
+Instantiate an object of the class \code{bspline}.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{bspline$new(t_knot, K, m)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{t_knot}}{Spline knot points.}
+
+\item{\code{K}}{Order of polynomial.}
+
+\item{\code{m}}{Spline coefficients (\eqn{m = M \cdot D}).}
+}
+\if{html}{\out{</div>}}
 }
 }
 \if{html}{\out{<hr>}}

@@ -1,9 +1,17 @@
-#' @title Create a B-Spline.
+#' @title Primitive class that creates b-splines.
 #'
-#' @description Create a B-Spline with 3 arguments initialisation (\code{f = BSpline(K, t_knot, m)}).
+#' @description Creates b-splines given some set of knot points, and then
+#' evaluates the splines given some set of coefficients for the splines. It has
+#' 3 arguments initialisation : \code{f = BSpline(K, t_knot, m)}.
 #'
-#' @param K Order of polynomial.
-#' @param m Spline coefficients \eqn{m = M \times D}.
+#' @field t_knot Spline knot points.
+#' @field K Order of polynomial.
+#' @field m Spline coefficients (\eqn{m = M \cdot D}).
+#' @field B
+#' @field x_mean If set, these will be used to scale the output (default to 0).
+#' @field x_std \eqn{x_{out} = x_{std} \cdot (X \cdot m) + x_{mean}}
+#' @field t_pp pp break points (\code{size(t_pp) = length(t_knot) - 2*K + 1}).
+#' @field C Piecewise polynomial coefficients (\code{size(C) = [length(t_pp)-1, K]}).
 #'
 #' @return
 #' @importFrom R6 R6Class
@@ -14,20 +22,24 @@
 bspline <- R6Class(
   classname = "bspline",
   public = list(
+    t_knot = NULL,
+    K = NULL,
+    m = NULL,
+
     x_mean = 0,
     x_std = 1,
     B = list(),
-    K = NULL,
-    m = NULL,
-    t_knot = NULL,
     t_pp = NULL,
     C = NULL,
-    initialize = function(
-      K = NA,
-      m = NA,
-      t_knot = NA
-    ) {
-      stopifnot()
+
+    #' @description Instantiate an object of the class \code{bspline}.
+    #' @param t_knot Spline knot points.
+    #' @param K Order of polynomial.
+    #' @param m Spline coefficients (\eqn{m = M \cdot D}).
+    initialize = function(t_knot, K, m) {
+      stopifnot(!is.null(t_knot) | !is.na(t_knot) | !is.numeric(t_knot))
+      stopifnot(!is.null(K) | !is.na(K) | !is.numeric(K))
+      stopifnot(!is.null(m) | !is.na(m) | !is.numeric(m))
 
       self$K = K
       self$m = M
