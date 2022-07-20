@@ -1,0 +1,26 @@
+{
+    "id": "F62BF68B",
+    "path": "~/GitHub/smouseGPS/R/bspline.R",
+    "project_path": "R/bspline.R",
+    "type": "r_source",
+    "hash": "3279559400",
+    "contents": "",
+    "dirty": true,
+    "created": 1658234136535.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "34,20",
+        "scrollLine": "10"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1658290964,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1658290964390,
+    "read_only": false,
+    "read_only_alternatives": []
+}
