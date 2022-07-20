@@ -2,7 +2,7 @@
 % Please edit documentation in R/bspline.R
 \name{bspline}
 \alias{bspline}
-\title{Primitive class that creates b-splines.}
+\title{R6 class that creates b-splines.}
 \description{
 Creates b-splines given some set of knot points, and then
 evaluates the splines given some set of coefficients for the splines. It has
