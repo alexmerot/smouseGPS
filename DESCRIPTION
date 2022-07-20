@@ -11,3 +11,7 @@ RoxygenNote: 7.2.1
 Imports: 
     R6
 URL: https://alexmerot.github.io/smouseGPS/
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
