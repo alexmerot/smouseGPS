@@ -7,7 +7,7 @@
 #' @field t_knot Spline knot points.
 #' @field K Order of polynomial.
 #' @field m Spline coefficients (\eqn{m = M \cdot D}).
-#' @field B
+#' @field B Numeric
 #' @field x_mean If set, these will be used to scale the output (default to 0).
 #' @field x_std \eqn{x_{out} = x_{std} \cdot (X \cdot m) + x_{mean}}
 #' @field t_pp pp break points (\code{size(t_pp) = length(t_knot) - 2*K + 1}).
@@ -29,7 +29,7 @@ bspline <- R6Class(
 
     x_mean = 0,
     x_std = 1,
-    B = list(),
+    B = vector("numeric"),
     t_pp = NULL,
     C = NULL,
 
@@ -49,6 +49,17 @@ bspline <- R6Class(
   ),
 
   private = list(
+    domain = NULL,
+    S = NULL
+  ),
 
+  active = list(
+    #' @field get_S Get \eqn{S = K - 1}
+    get_S = function() self$S = self$K - 1,
+
+    #' @field get_domain Get the domain of \code{t_knot}
+    get_domain = function() {
+      self$domain = c(start = self$t_knot[1], end = self$t_knot[length(self$t_knot)])
+    }
   )
 )

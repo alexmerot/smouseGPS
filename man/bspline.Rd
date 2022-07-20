@@ -17,6 +17,8 @@ evaluates the splines given some set of coefficients for the splines. It has
 
 \item{\code{m}}{Spline coefficients (\eqn{m = M \cdot D}).}
 
+\item{\code{B}}{Numeric}
+
 \item{\code{x_mean}}{If set, these will be used to scale the output (default to 0).}
 
 \item{\code{x_std}}{\eqn{x_{out} = x_{std} \cdot (X \cdot m) + x_{mean}}}
@@ -24,6 +26,15 @@ evaluates the splines given some set of coefficients for the splines. It has
 \item{\code{t_pp}}{pp break points (\code{size(t_pp) = length(t_knot) - 2*K + 1}).}
 
 \item{\code{C}}{Piecewise polynomial coefficients (\code{size(C) = [length(t_pp)-1, K]}).}
+}
+\if{html}{\out{</div>}}
+}
+\section{Active bindings}{
+\if{html}{\out{<div class="r6-active-bindings">}}
+\describe{
+\item{\code{get_S}}{Get \eqn{S = K - 1}}
+
+\item{\code{get_domain}}{Get the domain of \code{t_knot}}
 }
 \if{html}{\out{</div>}}
 }
