@@ -4,14 +4,18 @@
 #' evaluates the splines given some set of coefficients for the splines. It has
 #' 3 arguments initialisation : \code{f = BSpline(K, t_knot, m)}.
 #'
-#' @field t_knot Spline knot points.
-#' @field K Order of polynomial.
-#' @field m Spline coefficients (\eqn{m = M \cdot D}).
-#' @field B Numeric
-#' @field x_mean If set, these will be used to scale the output (default to 0).
-#' @field x_std \eqn{x_{out} = x_{std} \cdot (X \cdot m) + x_{mean}}
-#' @field t_pp pp break points (\code{size(t_pp) = length(t_knot) - 2*K + 1}).
-#' @field C Piecewise polynomial coefficients (\code{size(C) = [length(t_pp)-1, K]}).
+#' @field t_knot a Matrix. Spline knot points.
+#' @field K an integer. Order of polynomial.
+#' @field m a numeric. Spline coefficients (\eqn{m = M \cdot D}).
+#' @field B a numeric.
+#' @field x_mean a numeric. If set, these will be used to scale the output
+#' (default to 0).
+#' @field x_std a numeric. \eqn{x_{out} = x_{std} \cdot (X \cdot m) + x_{mean}}
+#' @field t_pp a matrix. pp break points (\code{size(t_pp) = length(t_knot) - 2*K + 1}).
+#' @field C a vector. Piecewise polynomial coefficients
+#' (\code{size(C) = [length(t_pp)-1, K]}).
+#'
+#' @method value_at_points Gets
 #'
 #' @return
 #' @importFrom R6 R6Class
@@ -27,9 +31,10 @@ bspline <- R6Class(
     K = NULL,
     m = NULL,
 
+    B = c(),
     x_mean = 0,
     x_std = 1,
-    B = vector("numeric"),
+
     t_pp = NULL,
     C = NULL,
 
@@ -42,24 +47,76 @@ bspline <- R6Class(
       stopifnot("K must be numeric." = is.numeric(K) & !is.na(K))
       stopifnot("m must be numeric." = is.numeric(m) & !is.na(m))
 
-      self$K = K
-      self$m = m
-      self$t_knot = t_knot
+      self$t_knot <-  t_knot
+      self$K <-  K
+      self$m <-  m
+    },
+
+    # Overload the subscript operator '['.
+    # `[.self` <- function(x, i = NULL, j = NULL, ...) {
+    #   if(length(idx) >= 1) t <- idx[[1]]
+    #
+    #   if(length(idx >= 2)) {
+    #     num_derivatives <- idx[[2]]
+    #   } else {
+    #     num_derivatives <- 0
+    #   }
+    #
+    #   return(self$value_at_points(t, num_derivatives))
+    # },
+    #
+    # `[<-.self` <- function(x, i = NULL, j = NULL, value) {
+    #
+    # },
+
+    #' @description Get the value at the points.
+    #' @param t Points locations.
+    #' @param num_derivatives Numero of the derivatives.
+    value_at_points = function(t, num_derivatives) {
+      if(!exists("num_derivatives")) num_derivatives <- 0
+
+      x_out <- private$evaluate_from_pp_coeff(t, self$C, self$t_pp, num_derivatives)
+
+      if(length(self$x_std) != 0) x_out <- self$x_std * x_out
+
+      if(length(self$x_mean && num_derivatives == 0)) x_out <- x_out + self$x_mean
+
+      return(x_out)
     }
   ),
 
   private = list(
     domain = NULL,
-    S = NULL
+    S = NULL,
+
+    #' @description Returns the value of the function with derivative \code{D}
+    #' represented by \code{PP} coefficients \code{C} at locations \code{t}.
+    #' \code{t_pp} containes the intervals.
+    evaluate_from_pp_coeff = function(t, C, t_pp, D) {
+      if(!is.unsorted(t)) {
+        did_flip <- 0
+      } else if(t) {
+        t <- apply(t, 2, rev)
+        did_flip <- 1
+      } else {
+        warning("t was not sorted.")
+        did_flip <- 2
+      }
+    }
   ),
 
   active = list(
     #' @field get_S Get \eqn{S = K - 1}
-    get_S = function() private$S = self$K - 1,
+    get_S = function() private$S <-  self$K - 1,
 
     #' @field get_domain Get the domain of \code{t_knot}
     get_domain = function() {
-      private$domain = c(start = self$t_knot[1], end = self$t_knot[length(self$t_knot)])
+      private$domain <-  list(
+        start = self$t_knot[1],
+        end = self$t_knot[length(self$t_knot)]
+      )
+      attr(private$domain, "class") <- "domain"
     }
   )
 )
+
