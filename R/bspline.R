@@ -118,8 +118,7 @@ bspline <- R6Class(
 
       if(nargs() < 4) {
         D = 0
-      } else if (D > K-1)
-        return(NULL)
+      } else if (D > K-1) return(NULL)
     }
   ),
 
