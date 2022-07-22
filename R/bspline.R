@@ -19,6 +19,7 @@
 #'
 #' @return
 #' @importFrom R6 R6Class
+#' @importFrom Rfast sort_mat colRanks
 #' @export
 #'
 #' @examples
@@ -70,8 +71,8 @@ bspline <- R6Class(
     # },
 
     #' @description Get the value at the points.
-    #' @param t Points locations.
-    #' @param num_derivatives Numero of the derivatives.
+    #' @param t a matrix. Points locations.
+    #' @param num_derivatives an integer. Numero of the derivatives.
     value_at_points = function(t, num_derivatives) {
       if(!exists("num_derivatives")) num_derivatives <- 0
 
@@ -79,7 +80,7 @@ bspline <- R6Class(
 
       if(length(self$x_std) != 0) x_out <- self$x_std * x_out
 
-      if(length(self$x_mean && num_derivatives == 0)) x_out <- x_out + self$x_mean
+      if(length(self$x_mean) == 0 & num_derivatives == 0) x_out <- x_out + self$x_mean
 
       return(x_out)
     }
@@ -89,19 +90,36 @@ bspline <- R6Class(
     domain = NULL,
     S = NULL,
 
-    #' @description Returns the value of the function with derivative \code{D}
-    #' represented by \code{PP} coefficients \code{C} at locations \code{t}.
-    #' \code{t_pp} containes the intervals.
+    # @description Returns the value of the function with derivative \code{D}
+    # represented by \code{PP} coefficients \code{C} at locations \code{t}.
+    # \code{t_pp} containes the intervals.
+    # @param t a matrix. Points locations.
+    # @param C a vector. Piecewise polynomial coefficients.
+    # @param t_pp a matrix. pp break points.
+    # (\code{size(t_pp) = length(t_knot) - 2*K + 1}).
+    # @param D
     evaluate_from_pp_coeff = function(t, C, t_pp, D) {
-      if(!is.unsorted(t)) {
+      if(!is.unsorted(t[,1]) & t[1, 1] <= t[nrow(t), 1]) { # Is ascending order
         did_flip <- 0
-      } else if(t) {
-        t <- apply(t, 2, rev)
+
+      } else if(!is.unsorted(t[,1]) & t[1, 1] >= t[nrow(t), 1]) { # Is descending order
+        t <- t[nrow(t):1,] # Flip the order
         did_flip <- 1
+
       } else {
         warning("t was not sorted.")
+        return_indices <- colRanks(t, method = "first", stable = TRUE)
+        t <- sort_mat[t]
         did_flip <- 2
       }
+
+      K <-  dim(C)[2]
+      f <- matrix(0, nrow = dim(t)[1], ncol = dim(t)[2])
+
+      if(nargs() < 4) {
+        D = 0
+      } else if (D > K-1)
+        return(NULL)
     }
   ),
 

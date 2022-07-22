@@ -81,9 +81,9 @@ Get the value at the points.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{t}}{Points locations.}
+\item{\code{t}}{a matrix. Points locations.}
 
-\item{\code{num_derivatives}}{Numero of the derivatives.}
+\item{\code{num_derivatives}}{an integer. Numero of the derivatives.}
 }
 \if{html}{\out{</div>}}
 }

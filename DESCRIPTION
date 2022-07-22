@@ -9,7 +9,8 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
 Imports: 
-    R6
+    R6,
+    Rfast
 URL: https://alexmerot.github.io/smouseGPS/
 Suggests: 
     knitr,
