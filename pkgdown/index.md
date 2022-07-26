@@ -11,7 +11,9 @@ enables to deal with outliers by indentifying them thanks to a
 collection of b-splines. This package is based on the work of Jeffrey J.
 Early and Adam M. Sykulski
 (<https://jeffreyearly.com/smoothing-and-interpolating-noisy-gps-data/>).
-It is a translation from Matlab language to R language.
+It is a translation from Matlab language to R language. The
+documentation is on my github page
+[alexmerot.github.io/smouseGPS/](https://alexmerot.github.io/smouseGPS/).
 
 ## Installation
 
