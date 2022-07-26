@@ -3,6 +3,9 @@
 \name{bspline}
 \alias{bspline}
 \title{R6 class that creates b-splines.}
+\value{
+b-splines
+}
 \description{
 Creates b-splines given some set of knot points, and then
 evaluates the splines given some set of coefficients for the splines. It has
@@ -73,7 +76,7 @@ Instantiate an object of the class \code{bspline}.
 \if{html}{\out{<a id="method-bspline-value_at_points"></a>}}
 \if{latex}{\out{\hypertarget{method-bspline-value_at_points}{}}}
 \subsection{Method \code{value_at_points()}}{
-Get the value at the points.
+Get the value at points.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{bspline$value_at_points(t, num_derivatives)}\if{html}{\out{</div>}}
 }

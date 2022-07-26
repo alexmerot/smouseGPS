@@ -3,6 +3,9 @@
 \name{gps_smoothing_spline}
 \alias{gps_smoothing_spline}
 \title{A class useful for smoothing noisy gps data and removing outliers.}
+\value{
+Smooth points
+}
 \description{
 A class useful for smoothing noisy gps data and removing outliers.
 

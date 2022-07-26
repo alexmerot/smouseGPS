@@ -1,10 +1,8 @@
 #' A class useful for smoothing noisy gps data and removing outliers.
 #'
-#' @return
+#' @return Smooth points
 #' @importFrom R6 R6Class
 #' @export
-#'
-#' @examples
 
 gps_smoothing_spline <- R6Class("gps_smoothing_spline", list(
     # inherit = bivariate_smoothing_spline

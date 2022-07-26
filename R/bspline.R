@@ -15,14 +15,12 @@
 #' @field C a vector. Piecewise polynomial coefficients
 #' (\code{size(C) = [length(t_pp)-1, K]}).
 #'
-#' @method value_at_points Gets
+#' @return b-splines
 #'
-#' @return
 #' @importFrom R6 R6Class
 #' @importFrom Rfast sort_mat colRanks
+#' @importFrom pracma polyval mrdivide isempty numderiv
 #' @export
-#'
-#' @examples
 
 bspline <- R6Class(
   classname = "bspline",
@@ -70,7 +68,7 @@ bspline <- R6Class(
     #
     # },
 
-    #' @description Get the value at the points.
+    #' @description Get the value at points.
     #' @param t a matrix. Points locations.
     #' @param num_derivatives an integer. Numero of the derivatives.
     value_at_points = function(t, num_derivatives) {
@@ -78,9 +76,9 @@ bspline <- R6Class(
 
       x_out <- private$evaluate_from_pp_coeff(t, self$C, self$t_pp, num_derivatives)
 
-      if(length(self$x_std) != 0) x_out <- self$x_std * x_out
+      if(!isempty(self$x_std)) x_out <- self$x_std * x_out
 
-      if(length(self$x_mean) == 0 & num_derivatives == 0) x_out <- x_out + self$x_mean
+      if(!isempty(self$x_mean) & num_derivatives == 0) x_out <- x_out + self$x_mean
 
       return(x_out)
     }
@@ -90,9 +88,51 @@ bspline <- R6Class(
     domain = NULL,
     S = NULL,
 
+    # @description This function assumes that the splines are terminated at the
+    # boundary with repeat knot points.
+    #
+    # @param t_knot a Matrix. Spline knot points.
+    # @param K an integer. Order of polynomial.
+    # @param D
+    point_of_support = function(t_knot, K, D) {
+      interior_knots <- t_knot[(K+1):(length(t_knot)-K)]
+
+      if(isempty(interior_knots)) {
+        if (K == 1) {
+          t <- t_knot
+        } else {
+          dt = (t_knot[length(t_knot)] - t_knot[1]) / (K - 1)
+          t <- t_knot[1] + dt * (0:(K-1))
+        }
+
+        return(t)
+      }
+
+      if(K %% 2 == 1) {
+        interior_support <- interior_knots[1:(length(interior_knots)-1)] +
+          numderiv(interior_knots) /
+          2
+      }
+
+      return(t)
+    },
+
+    # @description Returns the piecewise polynomial coefficients in matrix C
+    # from spline coefficients in vector m.
+    #
+    # @param m Spline coefficients (\eqn{m = M \cdot D}).
+    # @param t_knot a Matrix. Spline knot points.
+    # @param K an integer. Order of polynomial.
+    # @param B Optional
+    pp_coeff_from_spline_coeff = function(m, t_knot, K, B) {
+
+      return(c(C, t_pp, B))
+    },
+
     # @description Returns the value of the function with derivative \code{D}
     # represented by \code{PP} coefficients \code{C} at locations \code{t}.
     # \code{t_pp} containes the intervals.
+    #
     # @param t a matrix. Points locations.
     # @param C a vector. Piecewise polynomial coefficients.
     # @param t_pp a matrix. pp break points.
@@ -117,14 +157,56 @@ bspline <- R6Class(
       f <- matrix(0, nrow = dim(t)[1], ncol = dim(t)[2])
 
       if(nargs() < 4) {
-        D = 0
-      } else if (D > K-1) return(NULL)
+        D <-  0
+      } else if (D > K-1)
+        return(f) # # By construction the splines are zero for K or more derivs
+
+      scale <- factorial(K-1-D)
+      i <- 1
+      while(scale > 0) {
+        scale[i + 1] <- factorial(scale[i] - 1)
+      }
+
+      indices <- 1:(K-D)
+
+      t_pp_bin <- findInterval(t, c(-Inf, tpp[2:(length(tpp)-1)], Inf))
+      start_index <- 1
+
+      while(start_index <= length(t)) {
+        i_bin <- t_pp_bin(start_index)
+        index <- which(t_pp_bin == i_bin)
+        end_index <- index[length(index)]
+        f[start_index:end_index] <- polyval(
+          mrdivide(C[i_bin, indices], scale),
+          t[start_index:end_index] - t_pp[i_bin]
+        )
+
+        start_index <- end_index + 1
+      }
+
+      # Include an extrapolated points past the end.
+      if(start_index <= length(t)) {
+        f[start_index:length(f)] <- polyval(
+          mrdivide(C[i_bin, indices], scale),
+          t[start_index:length(t)] - t_pp[i_bin]
+        )
+      }
+
+      if(did_flip == 0){
+        return(f)
+      } else if(did_flip == 1) {
+        f <- f[nrow(f):1,]
+      } else {
+        f <- f[return_indices]
+      }
+
+      return(f)
     }
   ),
 
   active = list(
     #' @field get_S Get \eqn{S = K - 1}
-    get_S = function() private$S <-  self$K - 1,
+    get_S = function() private$S <- self$K - 1,
 
     #' @field get_domain Get the domain of \code{t_knot}
     get_domain = function() {
@@ -133,6 +215,8 @@ bspline <- R6Class(
         end = self$t_knot[length(self$t_knot)]
       )
       attr(private$domain, "class") <- "domain"
+
+      return(private$domain)
     }
   )
 )

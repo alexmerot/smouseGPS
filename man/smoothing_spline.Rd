@@ -3,6 +3,9 @@
 \name{smoothing_spline}
 \alias{smoothing_spline}
 \title{Fit noisy data with a tensioned interpolating spline.}
+\value{
+Fitted data
+}
 \description{
 Fit noisy data with a tensioned interpolating spline.
 
