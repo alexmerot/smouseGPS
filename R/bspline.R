@@ -11,9 +11,9 @@
 #' @field x_mean a numeric. If set, these will be used to scale the output
 #' (default to 0).
 #' @field x_std a numeric. \eqn{x_{out} = x_{std} \cdot (X \cdot m) + x_{mean}}
-#' @field t_pp a matrix. pp break points (\code{size(t_pp) = length(t_knot) - 2*K + 1}).
+#' @field t_pp a matrix. pp break points (\code{size(t_pp) = nrow(t_knot) - 2*K + 1}).
 #' @field C a vector. Piecewise polynomial coefficients
-#' (\code{size(C) = [length(t_pp)-1, K]}).
+#' (\code{size(C) = [nrow(t_pp)-1, K]}).
 #'
 #' @return b-splines
 #'
@@ -30,7 +30,7 @@ bspline <- R6Class(
     K = NULL,
     m = NULL,
 
-    B = c(),
+    B = NULL,
     x_mean = 0,
     x_std = 1,
 
@@ -53,9 +53,9 @@ bspline <- R6Class(
 
     # Overload the subscript operator '['.
     # `[.self` <- function(x, i = NULL, j = NULL, ...) {
-    #   if(length(idx) >= 1) t <- idx[[1]]
+    #   if(nrow(idx) >= 1) t <- idx[[1]]
     #
-    #   if(length(idx >= 2)) {
+    #   if(nrow(idx >= 2)) {
     #     num_derivatives <- idx[[2]]
     #   } else {
     #     num_derivatives <- 0
@@ -86,122 +86,7 @@ bspline <- R6Class(
 
   private = list(
     domain = NULL,
-    S = NULL,
-
-    # @description This function assumes that the splines are terminated at the
-    # boundary with repeat knot points.
-    #
-    # @param t_knot a Matrix. Spline knot points.
-    # @param K an integer. Order of polynomial.
-    # @param D
-    point_of_support = function(t_knot, K, D) {
-      interior_knots <- t_knot[(K+1):(length(t_knot)-K)]
-
-      if(isempty(interior_knots)) {
-        if (K == 1) {
-          t <- t_knot
-        } else {
-          dt = (t_knot[length(t_knot)] - t_knot[1]) / (K - 1)
-          t <- t_knot[1] + dt * (0:(K-1))
-        }
-
-        return(t)
-      }
-
-      if(K %% 2 == 1) {
-        interior_support <- interior_knots[1:(length(interior_knots)-1)] +
-          numderiv(interior_knots) /
-          2
-      }
-
-      return(t)
-    },
-
-    # @description Returns the piecewise polynomial coefficients in matrix C
-    # from spline coefficients in vector m.
-    #
-    # @param m Spline coefficients (\eqn{m = M \cdot D}).
-    # @param t_knot a Matrix. Spline knot points.
-    # @param K an integer. Order of polynomial.
-    # @param B Optional
-    pp_coeff_from_spline_coeff = function(m, t_knot, K, B) {
-
-      return(c(C, t_pp, B))
-    },
-
-    # @description Returns the value of the function with derivative \code{D}
-    # represented by \code{PP} coefficients \code{C} at locations \code{t}.
-    # \code{t_pp} containes the intervals.
-    #
-    # @param t a matrix. Points locations.
-    # @param C a vector. Piecewise polynomial coefficients.
-    # @param t_pp a matrix. pp break points.
-    # (\code{size(t_pp) = length(t_knot) - 2*K + 1}).
-    # @param D
-    evaluate_from_pp_coeff = function(t, C, t_pp, D) {
-      if(!is.unsorted(t[,1]) & t[1, 1] <= t[nrow(t), 1]) { # Is ascending order
-        did_flip <- 0
-
-      } else if(!is.unsorted(t[,1]) & t[1, 1] >= t[nrow(t), 1]) { # Is descending order
-        t <- t[nrow(t):1,] # Flip the order
-        did_flip <- 1
-
-      } else {
-        warning("t was not sorted.")
-        return_indices <- colRanks(t, method = "first", stable = TRUE)
-        t <- sort_mat[t]
-        did_flip <- 2
-      }
-
-      K <-  dim(C)[2]
-      f <- matrix(0, nrow = dim(t)[1], ncol = dim(t)[2])
-
-      if(nargs() < 4) {
-        D <-  0
-      } else if (D > K-1)
-        return(f) # # By construction the splines are zero for K or more derivs
-
-      scale <- factorial(K-1-D)
-      i <- 1
-      while(scale > 0) {
-        scale[i + 1] <- factorial(scale[i] - 1)
-      }
-
-      indices <- 1:(K-D)
-
-      t_pp_bin <- findInterval(t, c(-Inf, tpp[2:(length(tpp)-1)], Inf))
-      start_index <- 1
-
-      while(start_index <= length(t)) {
-        i_bin <- t_pp_bin(start_index)
-        index <- which(t_pp_bin == i_bin)
-        end_index <- index[length(index)]
-        f[start_index:end_index] <- polyval(
-          mrdivide(C[i_bin, indices], scale),
-          t[start_index:end_index] - t_pp[i_bin]
-        )
-
-        start_index <- end_index + 1
-      }
-
-      # Include an extrapolated points past the end.
-      if(start_index <= length(t)) {
-        f[start_index:length(f)] <- polyval(
-          mrdivide(C[i_bin, indices], scale),
-          t[start_index:length(t)] - t_pp[i_bin]
-        )
-      }
-
-      if(did_flip == 0){
-        return(f)
-      } else if(did_flip == 1) {
-        f <- f[nrow(f):1,]
-      } else {
-        f <- f[return_indices]
-      }
-
-      return(f)
-    }
+    S = NULL
   ),
 
   active = list(
@@ -212,7 +97,7 @@ bspline <- R6Class(
     get_domain = function() {
       private$domain <-  list(
         start = self$t_knot[1],
-        end = self$t_knot[length(self$t_knot)]
+        end = self$t_knot[nrow(self$t_knot)]
       )
       attr(private$domain, "class") <- "domain"
 
@@ -221,3 +106,10 @@ bspline <- R6Class(
   )
 )
 
+
+
+#' @section Static methods:
+#'
+#' Static methods for the \code{bspline} class can be use with the
+#' syntax : \code{bs_statics$static_method_name}. See [smouseGPS::bs_statics()]
+#' for the documentation.

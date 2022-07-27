@@ -27,10 +27,10 @@ evaluates the splines given some set of coefficients for the splines. It has
 
 \item{\code{x_std}}{a numeric. \eqn{x_{out} = x_{std} \cdot (X \cdot m) + x_{mean}}}
 
-\item{\code{t_pp}}{a matrix. pp break points (\code{size(t_pp) = length(t_knot) - 2*K + 1}).}
+\item{\code{t_pp}}{a matrix. pp break points (\code{size(t_pp) = nrow(t_knot) - 2*K + 1}).}
 
 \item{\code{C}}{a vector. Piecewise polynomial coefficients
-(\code{size(C) = [length(t_pp)-1, K]}).}
+(\code{size(C) = [nrow(t_pp)-1, K]}).}
 }
 \if{html}{\out{</div>}}
 }
