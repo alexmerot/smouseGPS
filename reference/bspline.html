@@ -87,12 +87,12 @@ evaluates the splines given some set of coefficients for the splines. It has
 
 
 <dt><code>t_pp</code></dt>
-<dd><p>a matrix. pp break points (<code>size(t_pp) = length(t_knot) - 2*K + 1</code>).</p></dd>
+<dd><p>a matrix. pp break points (<code>size(t_pp) = nrow(t_knot) - 2*K + 1</code>).</p></dd>
 
 
 <dt><code>C</code></dt>
 <dd><p>a vector. Piecewise polynomial coefficients
-(<code>size(C) = [length(t_pp)-1, K]</code>).</p></dd>
+(<code>size(C) = [nrow(t_pp)-1, K]</code>).</p></dd>
 
 
 </dl><p></p></div>
