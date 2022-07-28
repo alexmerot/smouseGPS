@@ -19,7 +19,7 @@
 #'
 #' @importFrom R6 R6Class
 #' @importFrom Rfast sort_mat colRanks
-#' @importFrom pracma polyval mrdivide isempty numderiv
+#' @importFrom pracma polyval mrdivide isempty numderiv numdiff
 #' @export
 
 bspline <- R6Class(
