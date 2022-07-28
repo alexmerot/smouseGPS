@@ -4,7 +4,7 @@
 #' used with the synthax \code{bs_utils$function_name()}. These functions are
 #' equivalent to static methods for the \code{bspline} class.
 #'
-#' @return A list that contains functions for the [smouseGPS::bspline] class.
+#' @return \code{bs_utils} is a list containing functions for the [smouseGPS::bspline] class.
 #'
 #' @importFrom Rfast sort_mat colRanks
 #' @importFrom pracma polyval mrdivide isempty numderiv numdiff
@@ -159,7 +159,101 @@ spline <-  function(t, t_knot, K, D) {
   delta_l <- matrix(0, nrow = N, ncol = K)
   knot_indices <- findInterval(t, t_knot[1:(M-K+1)])
 
+  # XB will contain all splines from (K-D) through order (K-1).
+  # These are needed to compute the derivatives of the spline, if
+  # requested by the user.
+  #
+  # The indexing is such that the spline of order m, is located
+  # at index m-(K-D)+1
 
+  if(D > 0) {
+    XB <- array(0, dim = c(N, N_splines, D))
+
+    # if we go tho the max derivative, we need to manually create the 0th order spline.
+    if(D+1 == K) {
+      to_indices <- (
+        Conj(t(matrix(1:N, nrow = 1))) +
+          dim(XB)[1] *
+          ((knot_indices - 1) + dim(XB)[2] * (1-1))
+      )
+
+      XB[to_indices] <- 1
+    }
+  }
+
+  b <- array(0, dim = c(N, K))
+  b[,1] <- 1
+
+  for(j in 1:(K-1)) { # Loop through splines of increasing order j+1.
+    delta_r[,j] <- t_knot[knot_indices + j] - t
+    delta_l[,j] <- t - t_knot[knot_indices + 1 - j]
+
+    saved <- array(0, dim = c(N, 1))
+
+    for(r in 1:j) { # Loop through the nonzero splines.
+      term <- mrdivide(b[,r], delta_r[,r] + delta_l[,j+1-r])
+      b[,r] <- saved + delta_r[,r] * term
+      saved <- delta_l[,j+1-r] * term
+    }
+
+    b[,j+1] <- saved
+
+    # Save this info for later use in computing the derivatives have to loop
+    # through one index.
+    if(j+1 >= K-D & j+1 <= K-1) {
+      for(r in 1:j+1) {
+        to_indices <- (
+          Conj(t(matrix(1:N, nrow = 1))) +
+            dim(XB)[1] *
+            ((knot_indices - j+(r-1)-1) + dim(XB)[2] * (j+1-(K-1-D) - 1))
+        )
+
+        from_indices <- Conj(t(matrix(1:N, nrow = 1))) + dim(b)[1] * (r-1)
+
+        XB[to_indices] <- b[from_indices]
+      }
+    }
+  }
+
+  for(r in 1:K) {
+    to_indices <- (
+      Conj(t(matrix(1:N, nrow = 1))) +
+        dim(XB)[1] *
+        ((knot_indices - (K-1) + (r-1)-1) + dim(B)[2] * (1-1))
+    )
+
+    from_indices <- Conj(t(matrix(1:N, nrow = 1))) + dim(b)[1] * (r-1)
+
+    B[to_indices] <- b[from_indices]
+  }
+
+  diff_coeff <- function(a, r, m) (K-m) * (a[2]-a[1]) / (t_knot[r+K-m] - t_knot[r])
+
+  if(D > 0) {
+    for(r in 1:N_splines) {
+      alpha <- array(0, dim = c(K+1, K+1))
+      alpha[2,1] <- 1
+
+      for(m in 1:D) { # loop over derivatives
+        for(i in 1:(m+1)) { # Loop over coefficients
+          a <- alpha[,m]
+          alpha[i+1,m+1] <- diff_coeff(a[i:length(a)], r+i-1, m)
+
+          if(is.infinite(alpha[i+1, m+1]) | is.nan(alpha[i+1, m+1])) {
+            alpha[i+1, m+1] <- 0
+          }
+
+          if(r+i-1 > N_splines) {
+            B0 <- array(0, dim = c(N, 1))
+          } else {
+            B0 <- XB[, r+i-1, D+1-m] # Want the k-m order spline, in position D+1-m
+          }
+
+          B[, r, m+1] <- B[, r, m+1] + alpha[i+1,m+1] * B0
+        }
+      }
+    }
+  }
 
   return(B)
 }
