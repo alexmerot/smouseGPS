@@ -5,7 +5,7 @@
 #' @export
 
 gps_smoothing_spline <- R6Class("gps_smoothing_spline", list(
-    # inherit = bivariate_smoothing_spline
+  # inherit = bivariate_smoothing_spline
 ))
 
 # classdef GPSSmoothingSpline < BivariateSmoothingSpline

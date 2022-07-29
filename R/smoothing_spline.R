@@ -5,9 +5,7 @@
 #' @export
 
 
-smoothing_spline <- R6Class("smoothing_spline", list(
-
-))
+smoothing_spline <- R6Class("smoothing_spline", list())
 
 # classdef SmoothingSpline < BSpline
 #     #SmoothingSpline Fit noisy data with a tensioned interpolating spline

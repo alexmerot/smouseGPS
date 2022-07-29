@@ -20,14 +20,14 @@ evaluates the splines given some set of coefficients for the splines. It has
 
 \item{\code{m}}{a numeric. Spline coefficients (\eqn{m = M \cdot D}).}
 
-\item{\code{B}}{a numeric.}
+\item{\code{B}}{a numeric array with 3 dimension.}
 
 \item{\code{x_mean}}{a numeric. If set, these will be used to scale the output
 (default to 0).}
 
 \item{\code{x_std}}{a numeric. \eqn{x_{out} = x_{std} \cdot (X \cdot m) + x_{mean}}}
 
-\item{\code{t_pp}}{a matrix. pp break points (\code{size(t_pp) = nrow(t_knot) - 2*K + 1}).}
+\item{\code{t_pp}}{a numeric columnwise matrix. pp break points (\code{size(t_pp) = nrow(t_knot) - 2*K + 1}).}
 
 \item{\code{C}}{a vector. Piecewise polynomial coefficients
 (\code{size(C) = [nrow(t_pp)-1, K]}).}
