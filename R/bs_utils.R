@@ -64,7 +64,7 @@ pp_coeff_from_spline_coeff <- function(m, t_knot, K, B) {
   for (i in 1:K) {
     C[, K - i + 1] <- B[1:nrow(B) - 1, , i] * m
   }
-  return(c(C, t_pp, B))
+  return(cbind(C, t_pp, B))
 }
 
 #' @describeIn bs_utils Returns the value of the function with derivative \code{D} represented by \code{PP} coefficients \code{C} at locations \code{t}. \code{t_pp} containes the intervals.
