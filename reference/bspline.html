@@ -52,12 +52,25 @@ evaluates the splines given some set of coefficients for the splines. It has
 3 arguments initialisation : <code>f = BSpline(K, t_knot, m)</code>.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
+    <div class="sourceCode"><pre><code># S3 method for bspline
+[(obj, ...)
+
+# S3 method for bspline
+[(obj, ...) &lt;- value</code></pre></div>
+    </div>
 
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
 <p>b-splines</p>
+    </div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>Overloaded subscript operator</p>
+<p>Overloaded subscript operator assignment.</p>
     </div>
     <div class="section level2">
     <h2 id="public-fields">Public fields<a class="anchor" aria-label="anchor" href="#public-fields"></a></h2>
@@ -116,7 +129,11 @@ evaluates the splines given some set of coefficients for the splines. It has
 <h3 id="public-methods">Public methods<a class="anchor" aria-label="anchor" href="#public-methods"></a></h3>
 
 <ul><li><p><a href="#method-bspline-new"><code>bspline$new()</code></a></p></li>
+<li><p><a href="#method-bspline-%5B"><code>bspline$[()</code></a></p></li>
+<li><p><a href="#method-bspline-%5B&lt;-"><code>bspline$[&lt;-()</code></a></p></li>
 <li><p><a href="#method-bspline-value_at_points"><code>bspline$value_at_points()</code></a></p></li>
+<li><p><a href="#method-bspline-set_m"><code>bspline$set_m()</code></a></p></li>
+<li><p><a href="#method-bspline-spline_coefficients_did_change"><code>bspline$spline_coefficients_did_change()</code></a></p></li>
 <li><p><a href="#method-bspline-clone"><code>bspline$clone()</code></a></p></li>
 </ul></div><p></p><hr><a id="method-bspline-new"></a><div class="section">
 <h3 id="method-new-">Method <code>new()</code><a class="anchor" aria-label="anchor" href="#method-new-"></a></h3>
@@ -142,35 +159,111 @@ evaluates the splines given some set of coefficients for the splines. It has
 </dl><p></p></div>
 </div>
 
-</div><p></p><hr><a id="method-bspline-value_at_points"></a><div class="section">
-<h3 id="method-value-at-points-">Method <code>value_at_points()</code><a class="anchor" aria-label="anchor" href="#method-value-at-points-"></a></h3>
-<p>Get the value at points.</p><div class="section">
+</div><p></p><hr><a id="method-bspline-["></a><div class="section">
+<h3 id="method-">Method <code>[()</code><a class="anchor" aria-label="anchor" href="#method-"></a></h3>
+<p>Overload the subscript operator <code>[</code> for our class.</p><div class="section">
 <h4 id="usage-1">Usage<a class="anchor" aria-label="anchor" href="#usage-1"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">bspline</span><span class="op">$</span><span class="fu">value_at_points</span><span class="op">(</span><span class="va">t</span>, <span class="va">num_derivatives</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code>bspline$[(x, i, j)</code></pre></div><p></p></div>
 </div>
 
 <div class="section">
 <h4 id="arguments-1">Arguments<a class="anchor" aria-label="anchor" href="#arguments-1"></a></h4>
-<p></p><div class="arguments"><dl><dt><code>t</code></dt>
-<dd><p>a matrix. Points locations.</p></dd>
+<p></p><div class="arguments"><dl><dt><code>x</code></dt>
+<dd><p>object</p></dd>
 
 
-<dt><code>num_derivatives</code></dt>
-<dd><p>an integer. Numero of the derivatives.</p></dd>
+<dt><code>i</code></dt>
+<dd><p>rows</p></dd>
+
+
+<dt><code>j</code></dt>
+<dd><p>columns</p></dd>
 
 
 </dl><p></p></div>
 </div>
 
-</div><p></p><hr><a id="method-bspline-clone"></a><div class="section">
-<h3 id="method-clone-">Method <code>clone()</code><a class="anchor" aria-label="anchor" href="#method-clone-"></a></h3>
-<p>The objects of this class are cloneable with this method.</p><div class="section">
+</div><p></p><hr><a id="method-bspline-[&lt;-"></a><div class="section">
+<h3 id="method-lt-">Method <code>[&lt;-()</code><a class="anchor" aria-label="anchor" href="#method-lt-"></a></h3>
+<p>Overload the subscript operator <code>[&lt;-</code> for our class</p><div class="section">
 <h4 id="usage-2">Usage<a class="anchor" aria-label="anchor" href="#usage-2"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">bspline</span><span class="op">$</span><span class="fu">clone</span><span class="op">(</span>deep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code>bspline$[&lt;-(x, i, j, value)</code></pre></div><p></p></div>
 </div>
 
 <div class="section">
 <h4 id="arguments-2">Arguments<a class="anchor" aria-label="anchor" href="#arguments-2"></a></h4>
+<p></p><div class="arguments"><dl><dt><code>x</code></dt>
+<dd><p>object</p></dd>
+
+
+<dt><code>i</code></dt>
+<dd><p>an integer</p></dd>
+
+
+<dt><code>j</code></dt>
+<dd><p>an integer</p></dd>
+
+
+<dt><code>value</code></dt>
+<dd><p>value</p></dd>
+
+
+</dl><p></p></div>
+</div>
+
+</div><p></p><hr><a id="method-bspline-value_at_points"></a><div class="section">
+<h3 id="method-value-at-points-">Method <code>value_at_points()</code><a class="anchor" aria-label="anchor" href="#method-value-at-points-"></a></h3>
+<p>Get the value at points.</p><div class="section">
+<h4 id="usage-3">Usage<a class="anchor" aria-label="anchor" href="#usage-3"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">bspline</span><span class="op">$</span><span class="fu">value_at_points</span><span class="op">(</span><span class="va">t</span>, <span class="va">num_derivatives</span><span class="op">)</span></span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="arguments-3">Arguments<a class="anchor" aria-label="anchor" href="#arguments-3"></a></h4>
+<p></p><div class="arguments"><dl><dt><code>t</code></dt>
+<dd><p>a matrix. Points locations.</p></dd>
+
+
+<dt><code>num_derivatives</code></dt>
+<dd><p>an integer. Number of the derivatives.</p></dd>
+
+
+</dl><p></p></div>
+</div>
+
+</div><p></p><hr><a id="method-bspline-set_m"></a><div class="section">
+<h3 id="method-set-m-">Method <code>set_m()</code><a class="anchor" aria-label="anchor" href="#method-set-m-"></a></h3>
+<p>Set m</p><div class="section">
+<h4 id="usage-4">Usage<a class="anchor" aria-label="anchor" href="#usage-4"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">bspline</span><span class="op">$</span><span class="fu">set_m</span><span class="op">(</span><span class="va">new_m</span><span class="op">)</span></span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="arguments-4">Arguments<a class="anchor" aria-label="anchor" href="#arguments-4"></a></h4>
+<p></p><div class="arguments"><dl><dt><code>new_m</code></dt>
+<dd><p>a matrix</p></dd>
+
+
+</dl><p></p></div>
+</div>
+
+</div><p></p><hr><a id="method-bspline-spline_coefficients_did_change"></a><div class="section">
+<h3 id="method-spline-coefficients-did-change-">Method <code>spline_coefficients_did_change()</code><a class="anchor" aria-label="anchor" href="#method-spline-coefficients-did-change-"></a></h3>
+<p>Change matrix if spline coefficients have changed</p><div class="section">
+<h4 id="usage-5">Usage<a class="anchor" aria-label="anchor" href="#usage-5"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">bspline</span><span class="op">$</span><span class="fu">spline_coefficients_did_change</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+</div>
+
+
+</div><p></p><hr><a id="method-bspline-clone"></a><div class="section">
+<h3 id="method-clone-">Method <code>clone()</code><a class="anchor" aria-label="anchor" href="#method-clone-"></a></h3>
+<p>The objects of this class are cloneable with this method.</p><div class="section">
+<h4 id="usage-6">Usage<a class="anchor" aria-label="anchor" href="#usage-6"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">bspline</span><span class="op">$</span><span class="fu">clone</span><span class="op">(</span>deep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="arguments-5">Arguments<a class="anchor" aria-label="anchor" href="#arguments-5"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>deep</code></dt>
 <dd><p>Whether to make a deep clone.</p></dd>
 
@@ -182,6 +275,31 @@ evaluates the splines given some set of coefficients for the splines. It has
 
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">K</span> <span class="op">&lt;-</span> <span class="fl">3</span></span></span>
+<span class="r-in"><span><span class="va">D</span> <span class="op">&lt;-</span> <span class="va">K</span> <span class="op">-</span> <span class="fl">1</span></span></span>
+<span class="r-in"><span><span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/complex.html" class="external-link">Conj</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">10</span>, nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Increase the multiplicity of the end knots for higher order splines.</span></span></span>
+<span class="r-in"><span><span class="va">t_knot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="va">t</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="va">K</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>   <span class="va">t</span>,</span></span>
+<span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="va">t</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">]</span>, <span class="va">K</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">n_splines</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span> <span class="op">+</span> <span class="va">K</span> <span class="op">-</span> <span class="fl">2</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">m</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/array.html" class="external-link">array</a></span><span class="op">(</span><span class="fl">0</span>, dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">n_splines</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">B</span> <span class="op">&lt;-</span> <span class="va">bspline</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="va">t_knot</span>, <span class="va">K</span>, <span class="va">m</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">m</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span>  <span class="fl">1</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">B</span><span class="op">$</span><span class="va">m</span> <span class="op">&lt;-</span> <span class="va">m</span></span></span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 
