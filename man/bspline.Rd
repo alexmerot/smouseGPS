@@ -28,9 +28,9 @@ evaluates the splines given some set of coefficients for the splines. It has
 3 arguments initialisation : \code{f = BSpline(K, t_knot, m)}.
 }
 \details{
-Overloaded subscript
-
 Overloaded subscript operator
+
+Overloaded subscript operator assignment
 }
 \examples{
 K <- 3 # order of spline

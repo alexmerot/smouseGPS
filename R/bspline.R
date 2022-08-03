@@ -59,6 +59,7 @@
 #' @importFrom pracma polyval isempty
 #' @export
 
+#' @rdname bspline
 bspline <- R6Class(
   classname = "bspline",
   public = list(
@@ -175,7 +176,7 @@ bspline <- R6Class(
 )
 
 #' @rdname bspline
-#' @details Overloaded subscript
+#' @details Overloaded subscript operator
 #' @param obj \code{bspline} object
 #' @param t points
 #' @param n number of derivatives
@@ -183,7 +184,7 @@ bspline <- R6Class(
 `[.bspline` <- function(obj, t = NULL, n = NULL) obj$`[`(t, n)
 
 #' @rdname bspline
-#' @details Overloaded subscript operator
+#' @details Overloaded subscript operator assignment
 #' @param obj \code{bspline} object
 #' @param t points
 #' @param n number of derivatives
