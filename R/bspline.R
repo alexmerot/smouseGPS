@@ -4,17 +4,6 @@
 #' evaluates the splines given some set of coefficients for the splines. It has
 #' 3 arguments initialisation : \code{f = BSpline(K, t_knot, m)}.
 #'
-#' @field t_knot a Matrix. Spline knot points.
-#' @field K an integer. Order of polynomial.
-#' @field m a numeric. Spline coefficients (\eqn{m = M \cdot D}).
-#' @field B a numeric array with 3 dimension.
-#' @field x_mean a numeric. If set, these will be used to scale the output
-#' (default to 0).
-#' @field x_std a numeric. \eqn{x_{out} = x_{std} \cdot (X \cdot m) + x_{mean}}
-#' @field t_pp a numeric columnwise matrix. pp break points (\code{size(t_pp) = nrow(t_knot) - 2*K + 1}).
-#' @field C a vector. Piecewise polynomial coefficients
-#' (\code{size(C) = [nrow(t_pp)-1, K]}).
-#'
 #' @return b-splines
 #'
 #' @examples
@@ -46,7 +35,7 @@
 #'
 #' tq <- Conj(t(matrix(seq(min(t), max(t), length.out = 1000), nrow = 1)))
 #'
-#' B[tq]
+#' head(B[tq], 10)
 #'
 #' # Plot the spline
 #' plot(tq, B[tq], type = "l")
@@ -57,9 +46,20 @@
 #' @importFrom R6 R6Class
 #' @importFrom Rfast sort_mat colRanks
 #' @importFrom pracma polyval isempty
-#' @export
 
 #' @rdname bspline
+#' @field t_knot a Matrix. Spline knot points.
+#' @field K an integer. Order of polynomial.
+#' @field m a numeric. Spline coefficients (\eqn{m = M \cdot D}).
+#' @field B a numeric array with 3 dimension.
+#' @field x_mean a numeric. If set, these will be used to scale the output
+#' (default to 0).
+#' @field x_std a numeric. \eqn{x_{out} = x_{std} \cdot (X \cdot m) + x_{mean}}
+#' @field t_pp a numeric columnwise matrix. pp break points (\code{size(t_pp) = nrow(t_knot) - 2*K + 1}).
+#' @field C a vector. Piecewise polynomial coefficients
+#' (\code{size(C) = [nrow(t_pp)-1, K]}).
+#'
+#' @export
 bspline <- R6Class(
   classname = "bspline",
   public = list(
@@ -175,20 +175,9 @@ bspline <- R6Class(
   )
 )
 
-#' @rdname bspline
-#' @details Overloaded subscript operator
-#' @param obj \code{bspline} object
-#' @param t points
-#' @param n number of derivatives
 #' @export
 `[.bspline` <- function(obj, t = NULL, n = NULL) obj$`[`(t, n)
 
-#' @rdname bspline
-#' @details Overloaded subscript operator assignment
-#' @param obj \code{bspline} object
-#' @param t points
-#' @param n number of derivatives
-#' @param value value
 #' @export
 `[<-.bspline`  <- function(obj, t = NULL, n = NULL, value) obj$`[<-`(t, n, value)
 

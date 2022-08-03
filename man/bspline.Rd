@@ -2,23 +2,7 @@
 % Please edit documentation in R/bspline.R
 \name{bspline}
 \alias{bspline}
-\alias{[.bspline}
-\alias{[<-.bspline}
 \title{R6 class that creates b-splines.}
-\usage{
-\method{[}{bspline}(obj, t = NULL, n = NULL)
-
-\method{[}{bspline}(obj, t = NULL, n = NULL) <- value
-}
-\arguments{
-\item{obj}{\code{bspline} object}
-
-\item{t}{points}
-
-\item{n}{number of derivatives}
-
-\item{value}{value}
-}
 \value{
 b-splines
 }
@@ -26,11 +10,6 @@ b-splines
 Creates b-splines given some set of knot points, and then
 evaluates the splines given some set of coefficients for the splines. It has
 3 arguments initialisation : \code{f = BSpline(K, t_knot, m)}.
-}
-\details{
-Overloaded subscript operator
-
-Overloaded subscript operator assignment
 }
 \examples{
 K <- 3 # order of spline
@@ -61,7 +40,7 @@ B
 
 tq <- Conj(t(matrix(seq(min(t), max(t), length.out = 1000), nrow = 1)))
 
-B[tq]
+head(B[tq], 10)
 
 # Plot the spline
 plot(tq, B[tq], type = "l")
