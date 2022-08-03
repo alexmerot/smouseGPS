@@ -6,9 +6,18 @@
 \alias{[<-.bspline}
 \title{R6 class that creates b-splines.}
 \usage{
-\method{[}{bspline}(obj, ...)
+\method{[}{bspline}(obj, t = NULL, n = NULL)
 
-\method{[}{bspline}(obj, ...) <- value
+\method{[}{bspline}(obj, t = NULL, n = NULL) <- value
+}
+\arguments{
+\item{obj}{\code{bspline} object}
+
+\item{t}{points}
+
+\item{n}{number of derivatives}
+
+\item{value}{value}
 }
 \value{
 b-splines
@@ -19,31 +28,46 @@ evaluates the splines given some set of coefficients for the splines. It has
 3 arguments initialisation : \code{f = BSpline(K, t_knot, m)}.
 }
 \details{
-Overloaded subscript operator
+Overloaded subscript
 
-Overloaded subscript operator assignment.
+Overloaded subscript operator
 }
 \examples{
-K <- 3
-D <- K - 1
-t <- Conj(t(matrix(0:10, nrow = 1)))
+K <- 3 # order of spline
+D <- K-1 # number of derivates to return
+t <- Conj(t(matrix(0:10, nrow = 1))) # observation points
 
-# Increase the multiplicity of the end knots for higher order splines.
+# increase the multiplicity of the end knots for higher order splines
 t_knot <- rbind(
-   matrix(rep(t[1], K-1), ncol = 1),
-   t,
-   matrix(rep(t[length(t)], K-1))
+  array(t[1], dim = c(K-1, 1)),
+  t,
+  array(t[length(t)], dim = c(K-1, 1))
 )
 
-n_splines <-  length(t) + K - 2
+n_splines <- nrow(t) + K-2
 
-m <-  array(0, dim = c(n_splines, 1))
+# coefficients for the bsplines---set all of them to zero for now.
+m <- array(0, dim = c(n_splines,1))
 
-B <- bspline$new(t_knot, K, m)
+# initialize the BSpline class
+B <- bspline$new(K = K, t_knot = t_knot, m = m)
 
+B
 m[3] <-  1
 
-B$m <- m
+# Change m
+B$set_m(m)
+B
+
+tq <- Conj(t(matrix(seq(min(t), max(t), length.out = 1000), nrow = 1)))
+
+B[tq]
+
+# Plot the spline
+plot(tq, B[tq], type = "l")
+
+# Plot the first derivative
+plot(tq, B[tq, 1], type = "l")
 
 }
 \section{Public fields}{
@@ -84,9 +108,8 @@ B$m <- m
 \item \href{#method-bspline-new}{\code{bspline$new()}}
 \item \href{#method-bspline-[}{\code{bspline$[()}}
 \item \href{#method-bspline-[<-}{\code{bspline$[<-()}}
-\item \href{#method-bspline-value_at_points}{\code{bspline$value_at_points()}}
 \item \href{#method-bspline-set_m}{\code{bspline$set_m()}}
-\item \href{#method-bspline-spline_coefficients_did_change}{\code{bspline$spline_coefficients_did_change()}}
+\item \href{#method-bspline-value_at_points}{\code{bspline$value_at_points()}}
 \item \href{#method-bspline-clone}{\code{bspline$clone()}}
 }
 }
@@ -117,17 +140,15 @@ Instantiate an object of the class \code{bspline}.
 \subsection{Method \code{[()}}{
 Overload the subscript operator \code{[} for our class.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{bspline$[(x, i, j)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{bspline$[(t, n = NULL)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{x}}{object}
+\item{\code{t}}{points}
 
-\item{\code{i}}{rows}
-
-\item{\code{j}}{columns}
+\item{\code{n}}{derivatives}
 }
 \if{html}{\out{</div>}}
 }
@@ -138,19 +159,36 @@ Overload the subscript operator \code{[} for our class.
 \subsection{Method \code{[<-()}}{
 Overload the subscript operator \verb{[<-} for our class
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{bspline$[<-(x, i, j, value)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{bspline$[<-(x, t = NULL, n = NULL, value)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{x}}{object}
+\item{\code{x}}{Object}
 
-\item{\code{i}}{an integer}
+\item{\code{t}}{points}
 
-\item{\code{j}}{an integer}
+\item{\code{n}}{derivatives}
 
 \item{\code{value}}{value}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-bspline-set_m"></a>}}
+\if{latex}{\out{\hypertarget{method-bspline-set_m}{}}}
+\subsection{Method \code{set_m()}}{
+Set m
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{bspline$set_m(new_m)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{new_m}}{new_m}
 }
 \if{html}{\out{</div>}}
 }
@@ -173,33 +211,6 @@ Get the value at points.
 }
 \if{html}{\out{</div>}}
 }
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-bspline-set_m"></a>}}
-\if{latex}{\out{\hypertarget{method-bspline-set_m}{}}}
-\subsection{Method \code{set_m()}}{
-Set m
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{bspline$set_m(new_m)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{new_m}}{a matrix}
-}
-\if{html}{\out{</div>}}
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-bspline-spline_coefficients_did_change"></a>}}
-\if{latex}{\out{\hypertarget{method-bspline-spline_coefficients_did_change}{}}}
-\subsection{Method \code{spline_coefficients_did_change()}}{
-Change matrix if spline coefficients have changed
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{bspline$spline_coefficients_did_change()}\if{html}{\out{</div>}}
-}
-
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-bspline-clone"></a>}}
