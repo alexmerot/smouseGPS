@@ -23,12 +23,3 @@ You can install the development version of smouseGPS like so:
 # install.packages("remotes")
 remotes::install_github("alexmerot/smouseGPS")
 ```
-
-## Example
-
-This is a basic example which shows you how to solve a common problem:
-
-``` r
-library(smouseGPS)
-## basic example code
-```
