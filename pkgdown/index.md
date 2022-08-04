@@ -84,7 +84,7 @@ splines_values <- purrr::map2(
 
 # Plot the splines
 gg_splines <- ggplot(splines_values, aes(y = value, x = tq)) +
-  geom_line(aes(colour = order), size = 1.5, show.legend = FALSE) +
+  geom_line(aes(colour = order), show.legend = FALSE) +
   labs(title = "b-splines") +
   xlab("Points") +
   ylab("Value") +
@@ -92,7 +92,7 @@ gg_splines <- ggplot(splines_values, aes(y = value, x = tq)) +
 
 # Plot the first derivatives
 gg_derivatives <- ggplot(splines_values, aes(y = derivative, x = tq)) +
-  geom_line(aes(colour = order), size = 1.5, show.legend = FALSE) +
+  geom_line(aes(colour = order), show.legend = FALSE) +
   labs(title = "First derivatives") +
   xlab("Points") +
   ylab("Value") +

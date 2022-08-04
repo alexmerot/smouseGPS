@@ -4,7 +4,7 @@ library(smouseGPS)
 # Test de bspline ---------------------------------------------------------
 
 
-K <- 3 # order of spline
+K <- 4 # order of spline
 D <- K-1 # number of derivates to return
 t <- Conj(t(matrix(0:10, nrow = 1))) # observation points
 
@@ -32,7 +32,7 @@ B
 
 tq <- Conj(t(matrix(seq(min(t), max(t), length.out = 1000), nrow = 1)))
 
-B[tq]
+head(B[tq])
 
 # Plot the spline
 plot(tq, B[tq], type = "l")
