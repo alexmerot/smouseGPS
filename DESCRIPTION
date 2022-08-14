@@ -14,8 +14,17 @@ Imports:
     Rfast
 URL: https://alexmerot.github.io/smouseGPS/
 Suggests: 
+    dplyr (>= 1.0.9),
+    ggplot2 (>= 3.3.6),
     knitr,
+    patchwork (>= 1.1.1),
+    purrr (>= 0.3.4),
     rmarkdown,
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Config/testthat/edition: 3
+Remotes:  
+    tidyverse/ggplot2,
+    tidyverse/purrr,
+    thomasp85/patchwork,
+    tidyverse/dplyr
