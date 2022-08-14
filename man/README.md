@@ -19,10 +19,10 @@ Work in Progress
 
 </div>
 
-The goal of the R package is to smooth and interpolate noisy GPS data.
-It enables to deal with outliers by indentifying them thanks to a
-collection of b-splines. This package is based on the work of Jeffrey J.
-Early and Adam M. Sykulski
+The goal of the R package `smouseGPS` is to smooth and interpolate noisy
+GPS data. It enables to deal with outliers by indentifying them thanks
+to a collection of b-splines. This package is based on the work of
+Jeffrey J. Early and Adam M. Sykulski
 (<https://jeffreyearly.com/smoothing-and-interpolating-noisy-gps-data/>).
 It is a translation from Matlab language to R language. The
 documentation is on my github page

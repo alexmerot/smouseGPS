@@ -26,7 +26,7 @@ knitr::opts_chunk$set(
 Work in Progress
 :::
 
-The goal of the R package \code{smouseGPS} is to smooth and interpolate noisy
+The goal of the R package `smouseGPS` is to smooth and interpolate noisy
 GPS data. It enables to deal with outliers by indentifying them thanks to a
 collection of b-splines. 
 This package is based on the work of Jeffrey J. Early and Adam M. Sykulski
