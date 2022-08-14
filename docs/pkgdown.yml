@@ -3,7 +3,7 @@ pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   introduction: introduction.html
-last_built: 2022-08-04T15:30Z
+last_built: 2022-08-14T11:55Z
 urls:
   reference: https://alexmerot.github.io/smouseGPS/reference
   article: https://alexmerot.github.io/smouseGPS/articles

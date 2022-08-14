@@ -3,4 +3,28 @@ template:
   bootstrap: 5
   bootswatch: "superhero"
   theme: "gruvbox-dark"
+navbar:
+  structure:
+    left:
+      - intro
+      - reference
+      - articles
+      - tutorials
+      - news
+    right:
+      - github
+  components:
+    intro:
+      text: Introduction
+      href: articles/introduction.html
+    reference:
+      text: Référence
+      href: reference/index.html
+    articles:
+      text: Articles
+      menu:
+      - text: WIP
+    github:
+      icon: fa-github
+      href: https://github.com/alexmerot/smouseGPS
 
