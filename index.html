@@ -43,12 +43,15 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
-  <a class="nav-link" href="reference/index.html">Reference</a>
+  <a class="nav-link" href="articles/introduction.html">Introduction</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="reference/index.html">Référence</a>
 </li>
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="articles/introduction.html">Introduction</a>
+    <h6 class="dropdown-header" data-toc-skip>WIP</h6>
   </div>
 </li>
       </ul>
@@ -56,7 +59,14 @@
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off">
 </form>
 
-      <ul class="navbar-nav"></ul>
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/alexmerot/smouseGPS">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 
     
@@ -68,7 +78,10 @@
 <img src="logo.png" class="logo" alt=""><h1 id="smousegps-">smouseGPS <a class="anchor" aria-label="anchor" href="#smousegps-"></a>
 </h1>
 </div>
-<!-- badges: end --><p>The goal of smouseGPS is to smooth and interpolate noisy GPS data. It enables to deal with outliers by indentifying them thanks to a collection of b-splines. This package is based on the work of Jeffrey J. Early and Adam M. Sykulski (<a href="https://jeffreyearly.com/smoothing-and-interpolating-noisy-gps-data/" class="external-link uri">https://jeffreyearly.com/smoothing-and-interpolating-noisy-gps-data/</a>). It is a translation from Matlab language to R language. The documentation is on my github page <a href="https://alexmerot.github.io/smouseGPS/">alexmerot.github.io/smouseGPS/</a>.</p>
+<!-- badges: end --><div class="alert alert-warning" style="font-variant: small-caps; font-size: 2em; color: #a56404; border-radius: 33px; text-align: center;content-align: center; margin: 10% 1%; padding:2px;" role="alert">
+<svg xmlns="http://www.w3.org/2000/svg" width="10%" heigth="10%" viewbox="0 0 576 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path fill="#a56404" d="M272 95.93c26.5 0 47.99-21.47 47.99-47.97S298.5 0 272 0C245.5 0 224 21.47 224 47.97S245.5 95.93 272 95.93zM209.7 357.3c-25.75-17.25-52.25-33.24-79.5-48.11L58.62 270.2L1.246 471.1c-4.875 16.1 4.1 34.74 22 39.62s34.63-4.998 39.5-21.99l36.63-128.1l60.63 40.37v78.86c0 17.62 14.38 31.99 32 31.99s32-14.37 32-31.99l.0022-95.93C224 373.2 218.6 363.2 209.7 357.3zM311.1 416c-13.88 0-25.95 8.863-30.33 21.86l-24.75 74.07h319.9l-101.9-206.3c-11.38-22.49-43.1-23.63-56.1-2.01l-31.89 54.21l-65.26-35.64l-24-121.2C288.1 161.3 263.2 127.7 227.1 109.7c-1-.4999-2.125-.625-3.125-1.125c-2.25-1.125-4.752-1.1-7.252-2.625C201.5 99.85 185.2 95.98 168.7 95.98H95.1c-9.25 0-18.05 4.061-24.18 10.93l-55.95 63.92c-.75 .9998-1.5 2.124-2.25 3.249c-8.875 13.1-3 32.87 11.63 40.74l336.6 184.3l-9.837 16.87H311.1zM105.9 204.1l-23.5-12.87l28.13-32.12h34.38L105.9 204.1zM199.5 256.1l34.9-41.28l13.5 67.61L199.5 256.1z"></path></svg><p><strong>Work in Progress</strong></p>
+</div>
+<p>The goal of the R package is to smooth and interpolate noisy GPS data. It enables to deal with outliers by indentifying them thanks to a collection of b-splines. This package is based on the work of Jeffrey J. Early and Adam M. Sykulski (<a href="https://jeffreyearly.com/smoothing-and-interpolating-noisy-gps-data/" class="external-link uri">https://jeffreyearly.com/smoothing-and-interpolating-noisy-gps-data/</a>). It is a translation from Matlab language to R language. The documentation is on my github page <a href="https://alexmerot.github.io/smouseGPS/">alexmerot.github.io/smouseGPS/</a>.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -76,85 +89,6 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"alexmerot/smouseGPS"</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
-</h2>
-<div class="section level3">
-<h3 id="b-splines">B-splines<a class="anchor" aria-label="anchor" href="#b-splines"></a>
-</h3>
-<p>The class is the basis of the other classes.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://alexmerot.github.io/smouseGPS/">"smouseGPS"</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://patchwork.data-imaginist.com" class="external-link">"patchwork"</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">K</span> <span class="op">&lt;-</span> <span class="fl">3</span> <span class="co">#  order of spline</span></span>
-<span><span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/complex.html" class="external-link">Conj</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">10</span>, nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="co"># observation points</span></span>
-<span></span>
-<span><span class="va">list_bsplines</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a></span><span class="op">(</span><span class="st">"list"</span>, length <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
-<span><span class="va">i</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
-<span></span>
-<span></span>
-<span><span class="kw">while</span> <span class="op">(</span><span class="va">i</span> <span class="op">&lt;=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">list_bsplines</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="co"># browser()</span></span>
-<span>  <span class="co"># K &lt;- 3 # order of spline</span></span>
-<span>  <span class="va">D</span> <span class="op">&lt;-</span> <span class="va">K</span><span class="op">-</span><span class="fl">1</span> <span class="co"># number of derivates to return</span></span>
-<span>  </span>
-<span>  <span class="co"># increase the multiplicity of the end knots for higher order splines</span></span>
-<span>  <span class="va">t_knot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/array.html" class="external-link">array</a></span><span class="op">(</span><span class="va">t</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">K</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>    <span class="va">t</span>,</span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/array.html" class="external-link">array</a></span><span class="op">(</span><span class="va">t</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">]</span>, dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">K</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span>  </span>
-<span>  <span class="va">n_splines</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span> <span class="op">+</span> <span class="va">K</span><span class="op">-</span><span class="fl">2</span></span>
-<span>  </span>
-<span>  <span class="co"># coefficients for the bsplines---set all of them to zero for now.</span></span>
-<span>  <span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/array.html" class="external-link">array</a></span><span class="op">(</span><span class="fl">0</span>, dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">n_splines</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span>  </span>
-<span>  <span class="co"># initialize the BSpline class</span></span>
-<span>  <span class="va">list_bsplines</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va"><a href="reference/bspline.html">bspline</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>K <span class="op">=</span> <span class="va">K</span>, t_knot <span class="op">=</span> <span class="va">t_knot</span>, m <span class="op">=</span> <span class="va">m</span><span class="op">)</span></span>
-<span>  </span>
-<span>  <span class="va">m</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
-<span>  </span>
-<span>  <span class="co"># You can directly change m</span></span>
-<span>  <span class="va">list_bsplines</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="fu">set_m</span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span>
-<span>  </span>
-<span>  <span class="va">i</span> <span class="op">&lt;-</span> <span class="va">i</span> <span class="op">+</span> <span class="fl">1</span></span>
-<span>  <span class="va">K</span> <span class="op">&lt;-</span> <span class="va">K</span> <span class="op">+</span> <span class="fl">1</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">list_bsplines</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"K"</span>, <span class="fl">3</span><span class="op">:</span><span class="op">(</span><span class="va">K</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">tq</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/complex.html" class="external-link">Conj</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span>, length.out <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">splines_values</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">map2</a></span><span class="op">(</span></span>
-<span>  <span class="va">list_bsplines</span>,</span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">list_bsplines</span><span class="op">)</span>,</span>
-<span>  <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>order <span class="op">=</span> <span class="va">.y</span>, <span class="va">tq</span>, value <span class="op">=</span> <span class="va">.x</span><span class="op">[</span><span class="va">tq</span><span class="op">]</span>, derivative <span class="op">=</span> <span class="va">.x</span><span class="op">[</span><span class="va">tq</span>, <span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu">bind_rows</span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Plot the splines</span></span>
-<span><span class="va">gg_splines</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">splines_values</span>, <span class="fu">aes</span><span class="op">(</span>y <span class="op">=</span> <span class="va">value</span>, x <span class="op">=</span> <span class="va">tq</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_line</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>colour <span class="op">=</span> <span class="va">order</span><span class="op">)</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"b-splines"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">xlab</span><span class="op">(</span><span class="st">"Points"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ylab</span><span class="op">(</span><span class="st">"Value"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">theme_classic</span><span class="op">(</span><span class="op">)</span> </span>
-<span></span>
-<span><span class="co"># Plot the first derivatives</span></span>
-<span><span class="va">gg_derivatives</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">splines_values</span>, <span class="fu">aes</span><span class="op">(</span>y <span class="op">=</span> <span class="va">derivative</span>, x <span class="op">=</span> <span class="va">tq</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_line</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>colour <span class="op">=</span> <span class="va">order</span><span class="op">)</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"First derivatives"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">xlab</span><span class="op">(</span><span class="st">"Points"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ylab</span><span class="op">(</span><span class="st">"Value"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">theme_classic</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">gg_splines</span> <span class="op">/</span> <span class="va">gg_derivatives</span></span></code></pre></div>
-<p><img src="reference/figures/README-plot-bspline-1.png" width="100%"></p>
-</div>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="license">
