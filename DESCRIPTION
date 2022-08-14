@@ -23,8 +23,3 @@ Suggests:
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Config/testthat/edition: 3
-Remotes:  
-    tidyverse/ggplot2,
-    tidyverse/purrr,
-    thomasp85/patchwork,
-    tidyverse/dplyr
