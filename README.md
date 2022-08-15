@@ -7,7 +7,7 @@
 <!-- badges: end -->
 
 <div class="alert alert-warning"
-style="font-variant: small-caps; font-weight: bold; font-size: 2em; color: #a56404; border-radius: 33px; text-align: center;content-align: center; margin: 10% 1%; padding:2px;"
+style="font-variant: small-caps; font-weight: bold; font-size: 2em; color: #a56404; border-radius: 33px; text-align: center;content-align: center; margin: 20% 2 2 2; padding: 2 0 0 0;"
 role="alert">
 
 <svg xmlns="http://www.w3.org/2000/svg" width="10%" heigth="10%" viewBox="0 0 576 512">

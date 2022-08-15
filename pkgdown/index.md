@@ -6,8 +6,17 @@
 
 <!-- badges: end -->
 
+The goal of the R package `smouseGPS` is to smooth and interpolate noisy
+GPS data. It enables to deal with outliers by indentifying them thanks
+to a collection of b-splines. This package is based on the work of
+Jeffrey J. Early and Adam M. Sykulski
+(<https://jeffreyearly.com/smoothing-and-interpolating-noisy-gps-data/>).
+It is a translation from Matlab language to R language. The
+documentation is on my github page
+[alexmerot.github.io/smouseGPS/](https://alexmerot.github.io/smouseGPS/).
+
 <div class="alert alert-warning"
-style="font-variant: small-caps; font-weight: bold; font-size: 2em; color: #a56404; border-radius: 33px; text-align: center;content-align: center; margin: 10% 1%; padding:2px;"
+style="font-variant: small-caps; font-weight: bold; font-size: 2em; color: #a56404; border-radius: 33px; text-align: center;content-align: center; margin: 50 2 2 2; padding: 2 0 0 0;"
 role="alert">
 
 <svg xmlns="http://www.w3.org/2000/svg" width="10%" heigth="10%" viewBox="0 0 576 512">
@@ -18,15 +27,6 @@ role="alert">
 Work in Progress
 
 </div>
-
-The goal of the R package `smouseGPS` is to smooth and interpolate noisy
-GPS data. It enables to deal with outliers by indentifying them thanks
-to a collection of b-splines. This package is based on the work of
-Jeffrey J. Early and Adam M. Sykulski
-(<https://jeffreyearly.com/smoothing-and-interpolating-noisy-gps-data/>).
-It is a translation from Matlab language to R language. The
-documentation is on my github page
-[alexmerot.github.io/smouseGPS/](https://alexmerot.github.io/smouseGPS/).
 
 ## Installation
 
