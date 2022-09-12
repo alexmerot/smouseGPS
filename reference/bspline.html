@@ -125,6 +125,7 @@ evaluates the splines given some set of coefficients for the splines. It has
 <h3 id="public-methods">Public methods<a class="anchor" aria-label="anchor" href="#public-methods"></a></h3>
 
 <ul><li><p><a href="#method-bspline-new"><code>bspline$new()</code></a></p></li>
+<li><p><a href="#method-bspline-print"><code>bspline$print()</code></a></p></li>
 <li><p><a href="#method-bspline-%5B"><code>bspline$[()</code></a></p></li>
 <li><p><a href="#method-bspline-%5B&lt;-"><code>bspline$[&lt;-()</code></a></p></li>
 <li><p><a href="#method-bspline-set_m"><code>bspline$set_m()</code></a></p></li>
@@ -154,10 +155,18 @@ evaluates the splines given some set of coefficients for the splines. It has
 </dl><p></p></div>
 </div>
 
+</div><p></p><hr><a id="method-bspline-print"></a><div class="section">
+<h3 id="method-print-">Method <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code><a class="anchor" aria-label="anchor" href="#method-print-"></a></h3>
+<p>Override the default <code>print</code> method.</p><div class="section">
+<h4 id="usage-1">Usage<a class="anchor" aria-label="anchor" href="#usage-1"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">bspline</span><span class="op">$</span><span class="fu">print</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></span></code></pre></div><p></p></div>
+</div>
+
+
 </div><p></p><hr><a id="method-bspline-["></a><div class="section">
 <h3 id="method-">Method <code>[()</code><a class="anchor" aria-label="anchor" href="#method-"></a></h3>
 <p>Overload the subscript operator <code>[</code> for our class.</p><div class="section">
-<h4 id="usage-1">Usage<a class="anchor" aria-label="anchor" href="#usage-1"></a></h4>
+<h4 id="usage-2">Usage<a class="anchor" aria-label="anchor" href="#usage-2"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code>bspline$[(t, n = NULL)</code></pre></div><p></p></div>
 </div>
 
@@ -177,7 +186,7 @@ evaluates the splines given some set of coefficients for the splines. It has
 </div><p></p><hr><a id="method-bspline-[&lt;-"></a><div class="section">
 <h3 id="method-lt-">Method <code>[&lt;-()</code><a class="anchor" aria-label="anchor" href="#method-lt-"></a></h3>
 <p>Overload the subscript operator <code>[&lt;-</code> for our class</p><div class="section">
-<h4 id="usage-2">Usage<a class="anchor" aria-label="anchor" href="#usage-2"></a></h4>
+<h4 id="usage-3">Usage<a class="anchor" aria-label="anchor" href="#usage-3"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code>bspline$[&lt;-(x, t = NULL, n = NULL, value)</code></pre></div><p></p></div>
 </div>
 
@@ -205,7 +214,7 @@ evaluates the splines given some set of coefficients for the splines. It has
 </div><p></p><hr><a id="method-bspline-set_m"></a><div class="section">
 <h3 id="method-set-m-">Method <code>set_m()</code><a class="anchor" aria-label="anchor" href="#method-set-m-"></a></h3>
 <p>Set m</p><div class="section">
-<h4 id="usage-3">Usage<a class="anchor" aria-label="anchor" href="#usage-3"></a></h4>
+<h4 id="usage-4">Usage<a class="anchor" aria-label="anchor" href="#usage-4"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">bspline</span><span class="op">$</span><span class="fu">set_m</span><span class="op">(</span><span class="va">new_m</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -221,7 +230,7 @@ evaluates the splines given some set of coefficients for the splines. It has
 </div><p></p><hr><a id="method-bspline-value_at_points"></a><div class="section">
 <h3 id="method-value-at-points-">Method <code>value_at_points()</code><a class="anchor" aria-label="anchor" href="#method-value-at-points-"></a></h3>
 <p>Get the value at points.</p><div class="section">
-<h4 id="usage-4">Usage<a class="anchor" aria-label="anchor" href="#usage-4"></a></h4>
+<h4 id="usage-5">Usage<a class="anchor" aria-label="anchor" href="#usage-5"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">bspline</span><span class="op">$</span><span class="fu">value_at_points</span><span class="op">(</span><span class="va">t</span>, <span class="va">num_derivatives</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -241,7 +250,7 @@ evaluates the splines given some set of coefficients for the splines. It has
 </div><p></p><hr><a id="method-bspline-clone"></a><div class="section">
 <h3 id="method-clone-">Method <code>clone()</code><a class="anchor" aria-label="anchor" href="#method-clone-"></a></h3>
 <p>The objects of this class are cloneable with this method.</p><div class="section">
-<h4 id="usage-5">Usage<a class="anchor" aria-label="anchor" href="#usage-5"></a></h4>
+<h4 id="usage-6">Usage<a class="anchor" aria-label="anchor" href="#usage-6"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">bspline</span><span class="op">$</span><span class="fu">clone</span><span class="op">(</span>deep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
@@ -280,55 +289,35 @@ evaluates the splines given some set of coefficients for the splines. It has
 <span class="r-in"><span><span class="va">B</span> <span class="op">&lt;-</span> <span class="va">bspline</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>K <span class="op">=</span> <span class="va">K</span>, t_knot <span class="op">=</span> <span class="va">t_knot</span>, m <span class="op">=</span> <span class="va">m</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">B</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;bspline&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Public:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     B: NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     C: NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     K: 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     [: function (t, n = NULL) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     [&lt;-: function (x, t = NULL, n = NULL, value) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     clone: function (deep = FALSE) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     get_S: active binding</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     get_domain: active binding</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     initialize: function (t_knot, K, m) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     m: 0 0 0 0 0 0 0 0 0 0 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     set_m: function (new_m) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     t_knot: 0 0 0 1 2 3 4 5 6 7 8 9 10 10 10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     t_pp: NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     value_at_points: function (t, num_derivatives) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     x_mean: 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     x_std: 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Private:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     S: NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     domain: NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     spline_coefficients_did_change: function () </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;bspline&gt; with properties:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  K:  3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  m:  num [1:12, 1] 0 0 0 0 0 0 0 0 0 0 ... </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  t_knot:  num [1:15, 1] 0 0 0 1 2 3 4 5 6 7 ... </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  B:  NULL </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  x_mean:  0 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  x_std:  1 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  t_pp:  NULL </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  C:  NULL </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  S:  2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  domain:  0 10</span>
 <span class="r-in"><span><span class="va">m</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span>  <span class="fl">1</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Change m</span></span></span>
 <span class="r-in"><span><span class="va">B</span><span class="op">$</span><span class="fu">set_m</span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">B</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;bspline&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Public:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     B: 1 0 0 0 0 0 0 0 0 0 0 0 0.5 0 0 0 0 0 0 0 0 0 0 0.5 0.5  ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     C: 1 -2 1 0 0 0 0 0 0 0 0 1 -1 0 0 0 0 0 0 0 0 0.5 0.5 0 0  ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     K: 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     [: function (t, n = NULL) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     [&lt;-: function (x, t = NULL, n = NULL, value) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     clone: function (deep = FALSE) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     get_S: active binding</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     get_domain: active binding</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     initialize: function (t_knot, K, m) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     m: 0 0 1 0 0 0 0 0 0 0 0 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     set_m: function (new_m) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     t_knot: 0 0 0 1 2 3 4 5 6 7 8 9 10 10 10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     t_pp: 0 1 2 3 4 5 6 7 8 9 10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     value_at_points: function (t, num_derivatives) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     x_mean: 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     x_std: 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Private:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     S: NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     domain: NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     spline_coefficients_did_change: function () </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;bspline&gt; with properties:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  K:  3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  m:  num [1:12, 1] 0 0 1 0 0 0 0 0 0 0 ... </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  t_knot:  num [1:15, 1] 0 0 0 1 2 3 4 5 6 7 ... </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  B:  num [1:11, 1:12, 1:3] 1 0 0 0 0 0 0 0 0 0 ... </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  x_mean:  0 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  x_std:  1 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  t_pp:  num [1:11, 1] 0 1 2 3 4 5 6 7 8 9 ... </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  C:  num [1:10, 1:3] 1 -2 1 0 0 0 0 0 0 0 ... </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  S:  2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  domain:  0 10</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">tq</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/complex.html" class="external-link">Conj</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span>, length.out <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>

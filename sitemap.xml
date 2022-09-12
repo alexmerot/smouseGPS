@@ -4,6 +4,9 @@
     <loc>https://alexmerot.github.io/smouseGPS/404.html</loc>
   </url>
   <url>
+    <loc>https://alexmerot.github.io/smouseGPS/CONTRIBUTING.html</loc>
+  </url>
+  <url>
     <loc>https://alexmerot.github.io/smouseGPS/LICENSE.html</loc>
   </url>
   <url>
@@ -29,6 +32,9 @@
   </url>
   <url>
     <loc>https://alexmerot.github.io/smouseGPS/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://alexmerot.github.io/smouseGPS/reference/interpolating_spline.html</loc>
   </url>
   <url>
     <loc>https://alexmerot.github.io/smouseGPS/reference/smoothing_spline.html</loc>
