@@ -85,6 +85,7 @@ plot(tq, B[tq, 1], type = "l")
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-bspline-new}{\code{bspline$new()}}
+\item \href{#method-bspline-print}{\code{bspline$print()}}
 \item \href{#method-bspline-[}{\code{bspline$[()}}
 \item \href{#method-bspline-[<-}{\code{bspline$[<-()}}
 \item \href{#method-bspline-set_m}{\code{bspline$set_m()}}
@@ -112,6 +113,16 @@ Instantiate an object of the class \code{bspline}.
 }
 \if{html}{\out{</div>}}
 }
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-bspline-print"></a>}}
+\if{latex}{\out{\hypertarget{method-bspline-print}{}}}
+\subsection{Method \code{print()}}{
+Override the default \code{print} method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{bspline$print(...)}\if{html}{\out{</div>}}
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-bspline-["></a>}}

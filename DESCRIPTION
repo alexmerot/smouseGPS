@@ -3,16 +3,14 @@ Title: Interpolating splines, smoothing splines and b-splines
 Version: 0.0.0.9000
 Authors@R: 
     person("Alexis", "Merot", , "alexis.merot@ornitho79.org", role = c("aut", "cre"))
-Description: A series of classes for interpolating and smoothing data using b-splines.
+Description: A series of classes for interpolating and smoothing GPS data
+    using b-splines.
 License: GPL (>= 3)
-Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+URL: https://alexmerot.github.io/smouseGPS/
 Imports: 
     pracma,
     R6,
     Rfast
-URL: https://alexmerot.github.io/smouseGPS/
 Suggests: 
     dplyr (>= 1.0.9),
     ggplot2 (>= 3.3.6),
@@ -21,5 +19,9 @@ Suggests:
     purrr (>= 0.3.4),
     rmarkdown,
     testthat (>= 3.0.0)
-VignetteBuilder: knitr
+VignetteBuilder: 
+    knitr
 Config/testthat/edition: 3
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.1

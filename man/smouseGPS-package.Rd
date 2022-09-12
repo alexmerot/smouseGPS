@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-A series of classes for interpolating and smoothing data using b-splines.
+A series of classes for interpolating and smoothing GPS data using b-splines.
 }
 \seealso{
 Useful links:

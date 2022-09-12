@@ -198,13 +198,19 @@ spline <- function(t, t_knot, K, D) {
   b <- array(0, dim = c(N, K))
   b[, 1] <- 1
 
-  for (j in 1:(K - 1)) { # Loop through splines of increasing order j+1.
+  # NOTE: Becareful when K = 1, it works on matlab but not in R (j = 0 in R but [] in matlab).
+  if (K > 1) j <- 1 else (j <- 0)
+  while (j <= K - 1) { # Loop through splines of increasing order j+1.
+    # browser()
+
+    if (j == 0) break
+
     delta_r[, j] <- t_knot[knot_indices + j] - t
     delta_l[, j] <- t - t_knot[knot_indices + 1 - j]
 
     saved <- array(0, dim = c(N, 1))
 
-    for (r in 1:j) { # Loop through the nonzero
+    for (r in 1:j) { # Loop through the nonzero splines.
       # Right array divide
       term <- b[, r, drop = FALSE] / (delta_r[, r, drop = FALSE] + delta_l[, j + 1 - r, drop = FALSE])
       b[, r] <- saved + delta_r[, r] * as.vector(term)
@@ -228,12 +234,14 @@ spline <- function(t, t_knot, K, D) {
         XB <- array(XB, dim = c(N, N_splines, D))
       }
     }
+
+    j <- j + 1
   }
 
   for (r in 1:K) {
     to_indices <- (
       Conj(t(matrix(1:N, nrow = 1))) +
-        dim(XB)[1] *
+        dim(B)[1] *
           ((knot_indices - (K - 1) + (r - 1) - 1) + dim(B)[2] * (1 - 1))
     )
 

@@ -71,6 +71,8 @@ bspline <- R6Class(
     x_std = 1,
     t_pp = NULL,
     C = NULL,
+    S = NULL,
+    domain = NULL,
 
     #' @description Instantiate an object of the class \code{bspline}.
     #' @param t_knot Spline knot points.
@@ -84,6 +86,26 @@ bspline <- R6Class(
       self$t_knot <- t_knot
       self$K <- K
       self$m <- m
+
+      self$get_S
+      self$get_domain
+    },
+
+    #' @description Override the default `print` method.
+    print = function(...) {
+      cat(
+        "<bspline> with properties:\n\n",
+        "K: ", self$K, "\n",
+        "m:", capture.output(str(self$m)), "\n",
+        "t_knot:", capture.output(str(self$t_knot)), "\n",
+        "B:", capture.output(str(self$B)), "\n",
+        "x_mean: ", self$x_mean, "\n",
+        "x_std: ", self$x_std, "\n",
+        "t_pp:", capture.output(str(self$t_pp)), "\n",
+        "C:", capture.output(str(self$C)), "\n",
+        "S: ", self$S, "\n",
+        "domain: ", self$domain
+      )
     },
 
     #' @description Overload the subscript operator `[` for our class.
@@ -137,9 +159,6 @@ bspline <- R6Class(
     }
   ),
   private = list(
-    domain = NULL,
-    S = NULL,
-
     # Change matrix if spline coefficients have changed
     spline_coefficients_did_change = function() {
       output <-  bs_utils$pp_coeff_from_spline_coeff(
@@ -157,20 +176,20 @@ bspline <- R6Class(
   active = list(
     #' @field get_S Get \eqn{S = K - 1}
     get_S = function() {
-      private$S <- self$K - 1
+      self$S <- self$K - 1
 
-      return(private$S)
+      return(self$S)
     },
 
     #' @field get_domain Get the domain of \code{t_knot}
     get_domain = function() {
-      private$domain <- list(
+      self$domain <- c(
         start = self$t_knot[1],
         end = self$t_knot[nrow(self$t_knot)]
       )
-      attr(private$domain, "class") <- "domain"
+      attr(self$domain, "class") <- "domain"
 
-      return(private$domain)
+      return(self$domain)
     }
   )
 )
