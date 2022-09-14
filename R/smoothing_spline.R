@@ -8,7 +8,32 @@
 #' @rdname smoothing_spline
 #' @field t array of values for the independent axis.
 #' @field x array of values for the dependent axis.
-#' @field distribution distribution of the noise
+#' @field distribution distribution of the noise.
+#' @field ... Other arguments, see details.
+#'
+#' @field T degree at which tension is applied.
+#' @field lambda smoothing parameter, either pass a numeric value, or the
+#' lambda enumeration. Default is lambda$optimal_iterated.
+#' @field is_constrained indicates wether or not lambda was so big that the
+#' solution is just a constrained solution.
+#' @field mu mean value of the tension variable.
+#' @field knot_dof knot dofs
+#' @field covariance computed from the given distribution, this is the
+#' covariance structure of the observations. It may be a scalar, vector, or
+#' matrix.
+#' @field variable_cache structure storing several cached variables, useful for
+#' quick tension spline computation.
+#' @field did_override_sigma
+#' @field sigma initial weight (given as normal standard deviation).
+#' @field constraints constraints =
+#' @field outlier_distribution
+#' @field alpha
+#' @field lambda_at_full_tension what was the value of lambda at full tension.
+#' @field sigma_at_full_tension what was the set of 'sigmas' produced from the
+#' full tension solution.
+#' @field outlier_indices
+#' @field outlier_threshold set to a distance with < 1/10000 odds.
+#'
 #' @export
 smoothing_spline <- R6Class(
   classname = "smoothing_spline",
@@ -38,6 +63,28 @@ smoothing_spline <- R6Class(
     initialize = function(t, x, distribution, ...) {
       args <- list(...)
 
+      for (i in 1:length(args)) {
+        if (names(args)[i] == "K") {
+          K = args[[i]]
+        } else if (names(args)[i] == "K") {
+
+        } else if (names(args)[i] == "K") {
+
+        } else if (names(args)[i] == "K") {
+
+        } else if (names(args)[i] == "K") {
+
+        } else if (names(args)[i] == "K") {
+
+        } else if (names(args)[i] == "K") {
+
+        } else if (names(args)[i] == "K") {
+
+        } else if (names(args)[i] == "K") {
+
+        }
+      }
+
       self$t = t
       self$x = x
       self$distribution = distribution
@@ -49,7 +96,7 @@ smoothing_spline <- R6Class(
     XWX = NULL,
     Cm = NULL,
     Cm_inv = NULL,
-    Non_outlier_indices = NULL,
+    non_outlier_indices = NULL,
     tension_value = NULL
   )
 )

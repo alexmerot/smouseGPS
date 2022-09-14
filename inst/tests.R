@@ -25,7 +25,8 @@ m <- array(0, dim = c(n_splines,1))
 B <- bspline$new(K = K, t_knot = t_knot, m = m)
 
 B
-m[3] <-  1
+m[c(3, 6, 8)] <-  1
+m[c(5, 7)] <- 2
 # m <- seq(0, n_splines-1)
 
 # Change m
@@ -38,6 +39,7 @@ tq <- Conj(t(matrix(seq(min(t), max(t), length.out = 1000), nrow = 1)))
 # Plot the spline
 ggplot() +
   geom_line(aes(tq, B[tq])) +
+  geom_point(aes(0:(length(B$m)-1), B$m)) +
   scale_x_continuous(breaks = 0:10) +
   # scale_y_continuous(breaks = seq(0, 1, 0.1), limits = c(0, 1)) +
   theme_classic()

@@ -19,7 +19,14 @@ This R6 class inherits from the \code{bspline} class.
 
 \item{\code{x}}{array of values for the dependent axis.}
 
-\item{\code{distribution}}{distribution of the noise}
+\item{\code{distribution}}{distribution of the noise.}
+
+\item{\code{T}}{degree at which tension is applied.}
+
+\item{\code{lambda}}{smoothing parameter, either pass a numeric value, or the
+lambda enumeration. Default is lamba.optimalIterated.}
+
+\item{\code{outlier_threshold}}{}
 }
 \if{html}{\out{</div>}}
 }
